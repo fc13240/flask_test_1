@@ -30,3 +30,16 @@ class User(UserMixin, db.Model):
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
+
+class TrustSQL(db.Model):
+    __tablename__ = 'trustsql'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    prvkey = db.Column(db.String(1024), nullable=False)
+    pubkey = db.Column(db.String(1024), nullable=False)
+
+    def __init__(self, user_id, prvkey, pubkey):
+        self.user_id = user_id
+        self.prvkey = prvkey
+        self.pubkey = pubkey

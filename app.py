@@ -8,7 +8,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 
 from forms import TodoListForm, LoginForm, RegisterForm
 from ext import db, login_manager
-from models import TodoList, User
+from models import TodoList, User, TrustSQL
 from trustsql import Trustsql
 
 trustsql = Trustsql()
@@ -98,14 +98,19 @@ def register():
     if request.method == 'POST':
         user = User.query.filter_by(username=request.form['username'], password=request.form['password']).first()
         if user:
-            flash(request.form['username'] + 'have been register')
+            flash('"' + request.form['username'] + '" ' + '该用户名已经被注册了！')
         else:
             user = User(username=request.form['username'], password=request.form['password'])
             db.session.add(user)
             db.session.commit()
+            user = User.query.filter_by(username=user.username)
+            keys = trustsql.generatePairkey()
+            tsql = TrustSQL(user_id=user.id, prvkey=keys.prvkey, pubkey=keys.pubkey)
+            db.session.add(tsql)
+            db.session.commit()
             login_user(user)
             flash('你已成功注册')
-            return redirect(url_for('show_todo_list'))
+            return render_template('trustsql.html', user=user, tsql=tsql)
     form = LoginForm()
     re_form = RegisterForm()
     return render_template('login.html', form=form, re_form=re_form)

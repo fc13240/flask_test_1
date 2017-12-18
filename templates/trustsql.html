@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 
 {% block page_content %}
+
+{% if user %}
 <div class="row">
-	{% if keys.prvkey %}
-		<p>私钥：{{ keys.prvkey }}</p><hr>
-	{% endif %}
-	{% if keys.pubkey %}
-		<p>公钥：{{ keys.pubkey }}</p><hr>
-	{% endif %}
-    <p></p>
+	<p>用户：{{ user.username }} | ID: {{ user.id }}</p>
 </div>
+<hr>
+{% endif %}
+{% if tsql %}
+<div class="row">
+	<p>私钥：{{ tsql.prvkey }}</p><hr>
+	<p>公钥：{{ tsql.pubkey }}</p><hr>
+</div>
+{% endif %}
 {% endblock %}
