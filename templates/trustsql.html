@@ -13,5 +13,20 @@
 	<p>私钥：{{ tsql.prvkey }}</p><hr>
 	<p>公钥：{{ tsql.pubkey }}</p><hr>
 </div>
+<div class="row">
+	<h3 class="form-signin-heading">为字符串签名</h3>
+	<form method="POST" action="/signString">
+		<div class="form-group required">
+			{{ form.prvkey.label }}
+			{{ form.prvkey }}
+		</div>
+		<div class="form-group required">
+			{{ form.pStr.label }}
+			{{ form.pStr }}
+		</div>
+		{{ form.submit(class="btn btn-info submit") }}
+	</form>
+</div>
+
 {% endif %}
 {% endblock %}

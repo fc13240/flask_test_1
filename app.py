@@ -6,7 +6,7 @@ from flask import (Flask, render_template, redirect, url_for, request, flash)
 from flask_bootstrap import Bootstrap
 from flask_login import login_required, login_user, logout_user, current_user
 
-from forms import TodoListForm, LoginForm, RegisterForm
+from forms import TodoListForm, LoginForm, RegisterForm, SignStringForm
 from ext import db, login_manager
 from models import TodoList, User, TrustSQL
 from trustsql import Trustsql
@@ -84,9 +84,10 @@ def login():
         user = User.query.filter_by(username=request.form['username'], password=request.form['password']).first()
         if user:
             tsql = TrustSQL.query.filter_by(user_id=user.id).first_or_404()
+            form = SignStringForm(prvkey=tsql.prvkey)
             login_user(user)
             flash('"' + user.username + '" ' + '登录成功！')
-            return render_template('trustsql.html', user=user, tsql=tsql)
+            return render_template('trustsql.html', user=user, tsql=tsql, form=form)
         else:
             flash('Invalid username or password')
     form = LoginForm()
@@ -110,8 +111,10 @@ def register():
             db.session.add(tsql)
             db.session.commit()
             login_user(t_user)
+
+            form = SignStringForm()
             flash('你已成功注册')
-            return render_template('trustsql.html', user=t_user, tsql=tsql)
+            return render_template('trustsql.html', user=t_user, tsql=tsql, form=form)
     form = LoginForm()
     re_form = RegisterForm()
     return render_template('login.html', form=form, re_form=re_form)

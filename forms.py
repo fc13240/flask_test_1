@@ -21,3 +21,8 @@ class RegisterForm(FlaskForm):
 	username = StringField('用户名', validators=[DataRequired(), Length(1, 24)])
 	password = PasswordField('密码', validators=[DataRequired(), Length(1, 24)])
 	submit = SubmitField('注册')
+
+
+class SignStringForm(FlaskForm):
+	prvkey = StringField('私钥', validators=[DataRequired(), Length(1, 1024)])
+	pStr = StringField('待签名字符串', validators=[DataRequired()])
