@@ -4,7 +4,13 @@
 {% block page_content %}
 <div class="row">
     <div class="col-md-4">
-        <h2 class="form-signin-heading">please sigin in</h2>
+        <h2 class="form-signin-heading">登录</h2>
+        {{ wtf.quick_form(form, form_type="horizontal") }}
+    </div>
+</div>
+<div class="col">
+	<div class="col-md-4">
+        <h2 class="form-signup-heading">注册</h2>
         {{ wtf.quick_form(form, form_type="horizontal") }}
     </div>
 </div>

@@ -92,6 +92,22 @@ def login():
     return render_template('login.html', form=form)
 
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        user = User.query.filter_by(username=request.form['username'], password=request.form['password']).first()
+        if user:
+            flash(request.form['username'] + 'have been register')
+        else:
+            user = User(username=request.form['username'], password=request.form['password'])
+            db.session.add(user)
+            db.session.commit()
+            login_user(user)
+            flash('你已成功注册')
+            return redirect(url_for('show_todo_list'))
+    form = RegisterForm()
+    return render_template('login.html', re_form=form)
+
 @app.route('/logout')
 @login_required
 def logout():
