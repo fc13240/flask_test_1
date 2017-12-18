@@ -10,8 +10,7 @@ class Trustsql(object):
 		pPubkey = (c_char*90)()
 
 		retcode = self.libc.GeneratePairkey(pPrvkey, pPubkey)
-		keys = {"prvkey": str(pPrvkey.value), "pubkey": str(pPubkey.value)}
-		return keys
+		return (str(pPrvkey.value), str(pPubkey.value))
 
 	def generatePubkeyByPrvkey(self, pPrvkey):
 		pPubkey = (c_char*90)()
