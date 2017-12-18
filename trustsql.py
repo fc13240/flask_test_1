@@ -2,7 +2,7 @@ from ctypes import *
 
 class Trustsql(object):
 	"""docstring for Trustsql"""
-	def __init__(self, arg):
+	def __init__(self):
 		self.libc = cdll.LoadLibrary('../TrustSQL_SDK_V1.1.so')
 
 	def generatePairkey():
