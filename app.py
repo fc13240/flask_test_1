@@ -89,7 +89,8 @@ def login():
         else:
             flash('Invalid username or password')
     form = LoginForm()
-    return render_template('login.html', form=form)
+    re_form = RegisterForm()
+    return render_template('login.html', form=form, re_form=re_form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -105,8 +106,9 @@ def register():
             login_user(user)
             flash('你已成功注册')
             return redirect(url_for('show_todo_list'))
-    form = RegisterForm()
-    return render_template('login.html', re_form=form)
+    form = LoginForm()
+    re_form = RegisterForm()
+    return render_template('login.html', form=form, re_form=re_form)
 
 @app.route('/logout')
 @login_required
