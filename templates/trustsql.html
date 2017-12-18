@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="row">
+	{% if keys.prvkey %}
+		<p>私钥：{{ keys.prvkey }}</p><hr>
+	{% endif %}
+	{% if keys.pubkey %}
+		<p>公钥：{{ keys.pubkey }}</p><hr>
+	{% endif %}
+    <p></p>
+</div>
+{% endblock %}

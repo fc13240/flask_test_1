@@ -9,6 +9,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from forms import TodoListForm, LoginForm
 from ext import db, login_manager
 from models import TodoList, User
+from trustsql import Trustsql
 
 SECRET_KEY = 'This is my key'
 
@@ -100,6 +101,12 @@ def logout():
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter_by(id=int(user_id)).first()
+
+@app.route('/trustsql/generate_pair_key')
+def generatePairkey():
+    pPrvkey, pPubkey = Trustsql.generatePairkey()
+    keys = {"prvkey": pPrvkey, "pubkey": pPubkey}
+    return render_template('trustsql.html', keys=keys)
 
 
 if __name__ == '__main__':
