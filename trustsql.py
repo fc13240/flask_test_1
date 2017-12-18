@@ -5,7 +5,7 @@ class Trustsql(object):
 	def __init__(self):
 		self.libc = cdll.LoadLibrary('../TrustSQL_SDK_V1.1.so')
 
-	def generatePairkey():
+	def generatePairkey(self):
 		pPrvkey = (c_byte*45)()
 		pPubkey = (c_byte*90)()
 
