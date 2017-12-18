@@ -11,6 +11,8 @@ from ext import db, login_manager
 from models import TodoList, User
 from trustsql import Trustsql
 
+trustsql = Trustsql()
+
 SECRET_KEY = 'This is my key'
 
 app = Flask(__name__)
@@ -104,7 +106,7 @@ def load_user(user_id):
 
 @app.route('/trustsql/generate_pair_key')
 def generatePairkey():
-    pPrvkey, pPubkey = Trustsql.generatePairkey()
+    pPrvkey, pPubkey = trustsql.generatePairkey()
     keys = {"prvkey": pPrvkey, "pubkey": pPubkey}
     return render_template('trustsql.html', keys=keys)
 
