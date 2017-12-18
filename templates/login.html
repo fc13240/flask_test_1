@@ -9,7 +9,11 @@
     </div>
     <div class="col-md-4">
         <h2 class="form-signup-heading">注册</h2>
-        {{ wtf.quick_form(re_form, form_type="horizontal") }}
+        <form method="POST", action="/register">
+        	{{ re_form.username }}
+        	{{ re_form.password }}
+        	{{ re_form.submit }}
+        </form>
     </div>
 </div>
 <div class="col">
