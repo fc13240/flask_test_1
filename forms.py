@@ -26,3 +26,4 @@ class RegisterForm(FlaskForm):
 class SignStringForm(FlaskForm):
 	prvkey = StringField('私钥', validators=[DataRequired(), Length(1, 1024)])
 	pStr = StringField('待签名字符串', validators=[DataRequired()])
+	submit = SubmitField('生成签名')
