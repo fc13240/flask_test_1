@@ -3,7 +3,7 @@ from ctypes import *
 class Trustsql(object):
 	"""docstring for Trustsql"""
 	def __init__(self, arg):
-		libc = cdll.LoadLibrary('../TrustSQL_SDK_V1.1.so')
+		self.libc = cdll.LoadLibrary('../TrustSQL_SDK_V1.1.so')
 
 	def generatePairkey():
 		pPrvkey = (c_byte*45)()
