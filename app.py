@@ -106,8 +106,7 @@ def load_user(user_id):
 
 @app.route('/trustsql/generate_pair_key')
 def generatePairkey():
-    pPrvkey, pPubkey = trustsql.generatePairkey()
-    keys = {"prvkey": pPrvkey, "pubkey": pPubkey}
+    keys = trustsql.generatePairkey()
     return render_template('trustsql.html', keys=keys)
 
 
