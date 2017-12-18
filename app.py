@@ -83,9 +83,10 @@ def login():
     if request.method == 'POST':
         user = User.query.filter_by(username=request.form['username'], password=request.form['password']).first()
         if user:
+            tsql = TrustSQL.query.filter_by(user_id=user.id).first_or_404()
             login_user(user)
-            flash('you have logged in!')
-            return redirect(url_for('show_todo_list'))
+            flash('"' + user.username + '" ' + '登录成功！')
+            return render_template('trustsql.html', user=user, tsql=tsql)
         else:
             flash('Invalid username or password')
     form = LoginForm()
