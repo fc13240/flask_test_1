@@ -4,7 +4,7 @@
 {% block page_content %}
 <div class="col-md-4">
     <div class="row">
-        <h2 class="form-signin-heading">登录</h2>
+        <h3 class="form-signin-heading">登录</h3>
         <form method="POST", action="/login">
         	<div class="form-group required">
         		{{ form.username.label }}
@@ -19,7 +19,7 @@
     </div>
     <hr>
     <div class="row">
-        <h2 class="form-signup-heading">注册</h2>
+        <h3 class="form-signup-heading">注册 <p>生成公私钥</p></h3>
         <form method="POST", action="/register">
         	<div class="form-group required">
         		{{ re_form.username.label }}
