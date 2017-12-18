@@ -10,9 +10,15 @@
     <div class="col-md-4">
         <h2 class="form-signup-heading">注册</h2>
         <form method="POST", action="/register">
-        	{{ re_form.username }}
-        	{{ re_form.password }}
-        	{{ re_form.submit }}
+        	<div class="form-group required">
+        		{{ re_form.username.label }}
+        		{{ re_form.username }}
+        	</div>
+        	<div class="form-group required">
+        		{{ re_form.password.label }}
+        		{{ re_form.password }}
+        	</div>
+        	{{ re_form.submit(class="btn btn-info submit") }}
         </form>
     </div>
 </div>
