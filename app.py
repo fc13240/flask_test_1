@@ -6,7 +6,7 @@ from flask import (Flask, render_template, redirect, url_for, request, flash)
 from flask_bootstrap import Bootstrap
 from flask_login import login_required, login_user, logout_user, current_user
 
-from forms import TodoListForm, LoginForm
+from forms import TodoListForm, LoginForm, RegisterForm
 from ext import db, login_manager
 from models import TodoList, User
 from trustsql import Trustsql
