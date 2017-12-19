@@ -11,7 +11,7 @@ $(function() {
 			data: data,
 		})
 		.done(function(data) {
-			console.log(data);
+			console.log('success: ' + data + data['sign']);
 			$('#signStringResult').text(data['sign']);
 		})
 		.fail(function() {
