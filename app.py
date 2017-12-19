@@ -10,7 +10,6 @@ from forms import TodoListForm, LoginForm, RegisterForm, SignStringForm, IssSign
 from ext import db, login_manager
 from models import TodoList, User, TrustSQL
 from trustsql import Trustsql
-import json
 
 trustsql = Trustsql()
 
@@ -159,7 +158,7 @@ def issSign():
         pCommitTime = request.form['pCommitTime'];
         pPrvkey = request.form['pPrvkey'];
 
-        sign = trustsql.issSign(pInfoKey, int(nInfoVersion), int(nState), json.loads(pContent), json.loads(pNotes), pCommitTime, pPrvkey)
+        sign = trustsql.issSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey)
 
         return jsonify({'sign': sign})
 

@@ -40,8 +40,8 @@ $(function() {
 
 		var data = {
 			'pInfoKey': pInfoKey,
-			'nInfoVersion': parseInt(nInfoVersion),
-			'nState': parseInt(nState),
+			'nInfoVersion': nInfoVersion,
+			'nState': nState,
 			'pContent': JSON.stringify(pContent),
 			'pNotes': JSON.stringify(pNotes),
 			'pCommitTime': pCommitTime,

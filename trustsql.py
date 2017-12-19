@@ -1,10 +1,17 @@
 from ctypes import *
-from sys import getsizeof
+import requests
+import json
 
 class Trustsql(object):
 	"""docstring for Trustsql"""
 	def __init__(self):
 		self.libc = cdll.LoadLibrary('../TrustSQL_SDK_V1.1.so')
+		self.host = 'https://open.trustsql.qq.com/cgi-bin/v1.0'
+
+		self.version = '1.0'
+		self.sign_type = 'ECDSA'
+		self.mch_id = 'gb8061f6b549ddc4f'
+		self.mch_sign = 'MEQCIHTM2q87F9PTUeSdZzNAN39eLwBaDKuPPnEdcHzizpTCAiBHn8pb+zasMGvcF/6qbJrG+1J1+bC+ilfnkZqwZmECwg=='
 
 	def generatePairkey(self):
 		pPrvkey = (c_char*45)()
@@ -30,15 +37,26 @@ class Trustsql(object):
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
 		pSign = (c_char*98)()
 		pInfoKey = infoKey.encode('utf-8')
-		nInfoVersion = c_uint(infoVersion)
-		nState = c_uint(state)
-		pContent = content.encode('utf-8')
-		pNotes = notes.encode('utf-8')
+		nInfoVersion = c_uint(int(infoVersion))
+		nState = c_uint(int(state))
+		pContent = json.loads(content).encode('utf-8')
+		pNotes = json.loads(notes).encode('utf-8')
 		pCommitTime = commitTime.encode('utf-8')
 		pPrvkey = prvkey.encode('utf-8')
 
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
 		return str(pSign.value, 'utf-8')
+
+	def iss_append(self, info_key, info_version, state, content, notes, commit_time, address, public_key, prvkey_key):
+		url = self.host + '/trustsql_iss_append.cgi'
+
+		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
+
+		return sign
+
+
+
+
 
 
 

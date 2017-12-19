@@ -36,7 +36,7 @@ class IssSignForm(FlaskForm):
 	pContent = StringField('存放content', validators=[DataRequired()])
 	pNotes = StringField('存放notes', validators=[DataRequired()])
 	pCommitTime = DateTimeField('提交共享信息时间', validators=[DataRequired()])
-	pPrvkey = StringField('存放共享信息发起方的公钥', validators=[DataRequired()])
+	pPrvkey = StringField('存放共享信息发起方的私钥', validators=[DataRequired()])
 
 
 
