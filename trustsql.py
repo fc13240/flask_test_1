@@ -18,11 +18,11 @@ class Trustsql(object):
 		retcode = self.libc.GeneratePubkeyByPrvkey(pPrvkey, pPubkey)
 		return str(pPubkey.value, 'utf-8')
 
-	def signString(self, prvkey, str):
+	def signString(self, prvkey, pStr):
 		pSign = (c_char*98)()
 		nLen = 98
 
-		retcode = self.libc.SignString(prvkey, str, nLen, pSign);
+		retcode = self.libc.SignString(prvkey, pStr, nLen, pSign);
 		return str(pSign.value, 'utf-8')
 
 
