@@ -135,9 +135,9 @@ def load_user(user_id):
 
 @app.route('/trustsql/signString', methods=['GET', 'POST'])
 def signStringWithPStr():
-    print('will come')
     if request.method == 'POST':
-        print('come post')
+        print(request.data)
+        print(request.form)
         prvkey = request.form['prvkey']
         pStr = request.form['pStr']
         print(prvkey, pStr)
