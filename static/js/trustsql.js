@@ -1,6 +1,6 @@
 $(function() {
 	$('#trustsql_signString').click(function() {
-		console.log('start sign')
+		console.log('start sign');
 		var data = {};
 		data = $('#signString_form').serialize();
 		console.log('post: ' + data);
