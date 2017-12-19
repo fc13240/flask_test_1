@@ -17,7 +17,7 @@
 </div>
 <div class="row">
 	<p class="form-signin-heading">为字符串签名</p>
-	<form method="POST" action="/trustsql/signString" id="trustsql_signString">
+	<form id="trustsql_signString">
 		<div class="form-group required">
 			{{ form.prvkey.label }}
 			{{ form.prvkey }}
@@ -26,7 +26,7 @@
 			{{ form.pStr.label }}
 			{{ form.pStr }}
 		</div>
-		{{ form.submit(class="btn btn-info submit") }}
+		{{ form.submit(class="btn btn-info submit" onclick="signString();") }}
 		{% if tsql.signstring %}
 		<p>签名结果：<span>{{ tsql.signstring }}</span></p>
 		{% endif %}
