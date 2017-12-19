@@ -2,7 +2,7 @@
 #-*- coding: UTF-8 -*-
 from __future__ import unicode_literals
 
-from flask import (Flask, render_template, redirect, url_for, request, flash)
+from flask import (Flask, render_template, redirect, url_for, request, flash, jsonify)
 from flask_bootstrap import Bootstrap
 from flask_login import login_required, login_user, logout_user, current_user
 
@@ -132,10 +132,18 @@ def logout():
 def load_user(user_id):
     return User.query.filter_by(id=int(user_id)).first()
 
-@app.route('/trustsql/generate_pair_key')
-def generatePairkey():
-    keys = trustsql.generatePairkey()
-    return render_template('trustsql.html', keys=keys)
+
+@app.route('/trustsql/signString', methods=['GET', 'POST'])
+def signStringWithPStr():
+    if request.method == 'POST':
+        data = request.get_json()
+        print(data)
+        prvkey = request.form['prvkey']
+        pStr = request.form['pStr']
+
+        sign = trustsql.signString(prvkey, pStr)
+
+        return jsonify({'prvkey': prvkey, 'str': pStr, 'sign': sign})
 
 
 if __name__ == '__main__':

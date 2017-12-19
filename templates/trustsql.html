@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+<script type="text/javascript" src="../static/js/jquery.js"></script>
+<script type="text/javascript" src="../static/js/trustsql.js"></script>
 
 {% block page_content %}
 
@@ -15,7 +17,7 @@
 </div>
 <div class="row">
 	<p class="form-signin-heading">为字符串签名</p>
-	<form method="POST" action="/signString" class="col-md-8">
+	<form method="POST" action="/trustsql/signString" id="trustsql_signString">
 		<div class="form-group required">
 			{{ form.prvkey.label }}
 			{{ form.prvkey }}
@@ -25,8 +27,10 @@
 			{{ form.pStr }}
 		</div>
 		{{ form.submit(class="btn btn-info submit") }}
+		{% if tsql.signstring %}
+		<p>签名结果：<span>{{ tsql.signstring }}</span></p>
+		{% endif %}
 	</form>
 </div>
-
 {% endif %}
 {% endblock %}
