@@ -28,6 +28,8 @@ class Trustsql(object):
 		return str(pSign.value, 'utf-8')
 
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
+		print(content)
+		
 		pSign = (c_char*98)()
 		pInfoKey = infoKey.encode('utf-8')
 		nInfoVersion = c_uint(infoVersion)
