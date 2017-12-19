@@ -12,6 +12,7 @@ $(function() {
 		})
 		.done(function(data) {
 			console.log(data);
+			$('#signStringResult').text(data['sign']);
 		})
 		.fail(function() {
 			console.log("error");
