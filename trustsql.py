@@ -4,6 +4,7 @@ class Trustsql(object):
 	"""docstring for Trustsql"""
 	def __init__(self):
 		self.libc = cdll.LoadLibrary('../TrustSQL_SDK_V1.1.so')
+		self.getErrorStr = self.libc.GetErrorStr()
 
 	def generatePairkey(self):
 		pPrvkey = (c_char*45)()
@@ -26,7 +27,7 @@ class Trustsql(object):
 		print(pStr)
 
 		retcode = self.libc.SignString(prvkey, pStr, nLen, pSign);
-		print(retcode)
+		print(self.getErrorStr)
 		print(str(pSign.value, 'utf-8'))
 		return str(pSign.value, 'utf-8')
 
