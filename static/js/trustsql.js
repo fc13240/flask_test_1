@@ -11,7 +11,8 @@ $(function() {
 			data: data,
 		})
 		.done(function(data) {
-			console.log(data['sign'])
+			console.log('ggg')
+			console.log(data)
 			console.log('success: ' + data);
 			$('#signStringResult').text(data['sign']);
 		})
