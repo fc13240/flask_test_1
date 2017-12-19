@@ -139,7 +139,7 @@ def signStringWithPStr():
         prvkey = request.form['prvkey']
         pStr = request.form['pStr']
         sign = trustsql.signString(prvkey, pStr)
-        
+        print(sign)
         return jsonify({'prvkey': prvkey, 'str': pStr, 'sign': sign})
 
 
