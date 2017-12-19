@@ -36,14 +36,14 @@ $(function() {
 		var pCommitTime = $('#iss_form_pCommitTime').val();
 		var pPrvkey = $('#iss_form_pPrvkey').val();
 
-		console.log(pPrvkey);
+		console.log(pContent);
 
 		var data = {
 			'pInfoKey': pInfoKey,
 			'nInfoVersion': nInfoVersion,
 			'nState': nState,
-			'pContent': pContent,
-			'pNotes': pNotes,
+			'pContent': JSON.stringify(pContent),
+			'pNotes': JSON.stringify(pNotes),
 			'pCommitTime': pCommitTime,
 			'pPrvkey': pPrvkey
 		};
