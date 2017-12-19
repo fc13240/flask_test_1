@@ -3,7 +3,7 @@
 {% block page_content %}
 <script type="text/javascript" src="../static/js/jquery.js"></script>
 <script type="text/javascript" src="../static/js/trustsql.js"></script>
-
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/trustsql.css') }}">
 {% if user %}
 <div class="row">
 	<p>用户：{{ user.username }} | ID: {{ user.id }}</p>
@@ -29,7 +29,7 @@
 			{{ form.pStr(id="signString_form_pStr") }}
 		</div>
 		<button type="button" id="trustsql_signString">提交</button>
-		<div>
+		<div class="signResult">
 			签名结果：<span id="signStringResult"></span>
 		</div>
 	</form>
@@ -67,7 +67,7 @@
 			{{ iss_form.pPrvkey(id="iss_form_pPrvkey") }}
 		</div>
 		<button type="button" id="trustsql_issSign">提交</button>
-		<div>
+		<div class="signResult">
 			签名结果：<span id="issSignResult"></span>
 		</div>
 	</form>
