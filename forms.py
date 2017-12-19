@@ -2,7 +2,7 @@
 #-*- coding: UTF-8 -*-
 from __future__ import unicode_literals
 from flask_wtf import FlaskForm
-from wtforms import RadioField, SubmitField, StringField, PasswordField, IntegerField, DateField
+from wtforms import RadioField, SubmitField, StringField, PasswordField, IntegerField, DateTimeField
 from wtforms.validators import DataRequired, Length
 
 class TodoListForm(FlaskForm):
@@ -33,9 +33,9 @@ class IssSignForm(FlaskForm):
 	pInfoKey = StringField('自定义的信息单号', validators=[DataRequired()])
 	nInfoVersion = IntegerField('共享信息版本', validators=[DataRequired()])
 	nState = IntegerField('共享信息状态编码', validators=[DataRequired()])
-	pContent = StringField('存放content的json格式', validators=[DataRequired()])
-	pNotes = StringField('存放notes的json格式字段', validators=[DataRequired()])
-	pCommitTime = DateField('提交共享信息时间', validators=[DataRequired()])
+	pContent = StringField('存放content', validators=[DataRequired()])
+	pNotes = StringField('存放notes', validators=[DataRequired()])
+	pCommitTime = DateTimeField('提交共享信息时间', validators=[DataRequired()])
 	pPubkey = StringField('存放共享信息发起方的公钥', validators=[DataRequired()])
 
 
