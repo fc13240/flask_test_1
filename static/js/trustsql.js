@@ -34,9 +34,9 @@ $(function() {
 		var pContent = $('#iss_form_pContent').val();
 		var pNotes = $('#iss_form_pNotes').val();
 		var pCommitTime = $('#iss_form_pCommitTime').val();
-		var pPubkey = $('#iss_form_pPubkey').val();
+		var pPrvkey = $('#iss_form_pPrvkey').val();
 
-		console.log('get vals');
+		console.log(pPrvkey);
 
 		var data = {
 			'pInfoKey': pInfoKey,
@@ -45,7 +45,7 @@ $(function() {
 			'pContent': pContent,
 			'pNotes': pNotes,
 			'pCommitTime': pCommitTime,
-			'pPubkey': pPubkey
+			'pPrvkey': pPrvkey
 		};
 
 		console.log(data);
