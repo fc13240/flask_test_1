@@ -2,7 +2,7 @@ $(function() {
 	$('#trustsql_signString').click(function() {
 		console.log('start sign')
 		var data = {};
-		data = $('#trustsql_signString').serialize();
+		data = $('#signString_form').serialize();
 		console.log('post: ' + data);
 		console.log(will post);
 		$.ajax({
