@@ -84,7 +84,8 @@ def login():
         user = User.query.filter_by(username=request.form['username'], password=request.form['password']).first()
         if user:
             tsql = TrustSQL.query.filter_by(user_id=user.id).first_or_404()
-            form = SignStringForm(prvkey=tsql.prvkey)
+            form = SignStringForm()
+            form.prvkey.data = tsql.prvkey
             login_user(user)
             flash('"' + user.username + '" ' + '登录成功！')
             return render_template('trustsql.html', user=user, tsql=tsql, form=form)
