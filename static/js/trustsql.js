@@ -2,18 +2,19 @@ $(function() {
 	$('#trustsql_signString').click(function() {
 		console.log('start sign');
 
-		var prvkey = $('#signString_form_prvkey').val()
-		var pStr = $('#signString_form_pStr').val()
+		var prvkey = $('#signString_form_prvkey').val();
+		var pStr = $('#signString_form_pStr').val();
 
-		console.log(prvkey)
-		console.log(pStr)
+		console.log('get vals');
+		console.log(prvkey);
+		console.log(pStr);
 
 		var data = {
 			'prvkey': prvkey,
 			'pStr': pStr
 		}
 
-		console.log(data)
+		console.log(data);
 
 		$.ajax({
 			url: '/trustsql/signString',
