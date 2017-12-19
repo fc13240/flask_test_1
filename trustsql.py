@@ -29,6 +29,7 @@ class Trustsql(object):
 		print(len(pStr))
 
 		retcode = self.libc.SignString(prvkey, pStr, getsizeof(pStr)-1, pSign);
+		print(pSign)
 		print(str(pSign.value, 'utf-8'))
 		return str(pSign.value, 'utf-8')
 
