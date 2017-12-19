@@ -58,6 +58,7 @@ $(function() {
 		})
 		.done(function(data) {
 			console.log("success");
+			console.log(data);
 			$('#issSignResult').text(data['sign']);
 		})
 		.fail(function() {
