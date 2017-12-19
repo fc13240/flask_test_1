@@ -1,8 +1,9 @@
 function signString() {
+	console.log('start sign')
 	var data = {};
 	data = $('#trustsql_signString').serialize();
 
-	$.$.ajax({
+	$.ajax({
 		url: '/trustsql/signString',
 		type: 'POST',
 		dataType: 'json',
