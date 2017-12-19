@@ -4,7 +4,7 @@ $(function() {
 		var data = {};
 		data = $('#signString_form').serialize();
 		console.log('post: ' + data);
-		console.log(will post);
+
 		$.ajax({
 			url: '/trustsql/signString',
 			type: 'POST',
