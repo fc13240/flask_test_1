@@ -6,8 +6,8 @@ $(function() {
 		var pStr = $('#signString_form_pStr').val();
 
 		console.log('get vals');
-		console.log(prvkey);
-		console.log(pStr);
+		// console.log(prvkey);
+		// console.log(pStr);
 
 		var data = {
 			'prvkey': prvkey,
@@ -25,7 +25,6 @@ $(function() {
 		.done(function(data) {
 			console.log('ggg');
 			console.log(data);
-			console.log('success: ' + data);
 			$('#signStringResult').text(data['sign']);
 		})
 		.fail(function() {
