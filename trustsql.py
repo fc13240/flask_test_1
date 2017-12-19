@@ -38,6 +38,8 @@ class Trustsql(object):
 		pPrvkey = prvkey.encode('utf-8')
 
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
+		print(retcode)
+		print(pSign.value)
 		return str(pSign.value, 'utf-8')
 
 
