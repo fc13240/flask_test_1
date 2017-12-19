@@ -3,16 +3,10 @@ $(function() {
 		var prvkey = $('#signString_form_prvkey').val();
 		var pStr = $('#signString_form_pStr').val();
 
-		console.log('get vals');
-		// console.log(prvkey);
-		// console.log(pStr);
-
 		var data = {
 			'prvkey': prvkey,
 			'pStr': pStr
 		};
-
-		console.log(data);
 
 		$.ajax({
 			url: '/trustsql/signString',

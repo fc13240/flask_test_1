@@ -6,7 +6,7 @@ from flask import (Flask, render_template, redirect, url_for, request, flash, js
 from flask_bootstrap import Bootstrap
 from flask_login import login_required, login_user, logout_user, current_user
 
-from forms import TodoListForm, LoginForm, RegisterForm, SignStringForm
+from forms import TodoListForm, LoginForm, RegisterForm, SignStringForm, IssSignForm
 from ext import db, login_manager
 from models import TodoList, User, TrustSQL
 from trustsql import Trustsql
@@ -86,9 +86,13 @@ def login():
             tsql = TrustSQL.query.filter_by(user_id=user.id).first_or_404()
             form = SignStringForm()
             form.prvkey.data = tsql.prvkey
+
+            iss_form = IssSignForm()
+            iss_form.pPubkey.data = tsql.pubkey
+            
             login_user(user)
             flash('"' + user.username + '" ' + '登录成功！')
-            return render_template('trustsql.html', user=user, tsql=tsql, form=form)
+            return render_template('trustsql.html', user=user, tsql=tsql, form=form, iss_form=iss_form)
         else:
             flash('Invalid username or password')
     form = LoginForm()
@@ -136,13 +140,10 @@ def load_user(user_id):
 @app.route('/trustsql/signString', methods=['GET', 'POST'])
 def signStringWithPStr():
     if request.method == 'POST':
-        print(request.data)
-        print(request.form)
         prvkey = request.form['prvkey']
         pStr = request.form['pStr']
-        print(prvkey, pStr)
         sign = trustsql.signString(prvkey, pStr)
-        print(sign)
+
         return jsonify({'prvkey': prvkey, 'str': pStr, 'sign': sign})
 
 

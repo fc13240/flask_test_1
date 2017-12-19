@@ -30,5 +30,40 @@
 		<p>签名结果：<span id="signStringResult"></span></p>
 	</form>
 </div>
+<div class="row">
+	<p class="form-signin-heading">生成共享信息签名</p>
+	<form id="issSign_form">
+		<div class="form-group required">
+			{{ iss_form.pInfoKey.label }}
+			{{ iss_form.pInfoKey(id="iss_form_pInfoKey") }}
+		</div>
+		<div class="form-group required">
+			{{ iss_form.nInfoVersion.label }}
+			{{ iss_form.nInfoVersion(id="iss_form_nInfoVersion") }}
+		</div>
+		<div class="form-group required">
+			{{ iss_form.nState.label }}
+			{{ iss_form.nState(id="iss_form_nState") }}
+		</div>
+		<div class="form-group required">
+			{{ iss_form.pContent.label }}
+			{{ iss_form.pContent(id="iss_form_pContent") }}
+		</div>
+		<div class="form-group required">
+			{{ iss_form.pNotes.label }}
+			{{ iss_form.pNotes(id="iss_form_pNotes") }}
+		</div>
+		<div class="form-group required">
+			{{ iss_form.pCommitTime.label }}
+			{{ iss_form.pCommitTime(id="iss_form_pCommitTime") }}
+		</div>
+		<div class="form-group required">
+			{{ iss_form.pPubkey.label }}
+			{{ iss_form.pPubkey(id="iss_form_pPubkey") }}
+		</div>
+		<button type="button" id="trustsql_issSign">提交</button>
+		<p>签名结果：<span id="issSignResult"></span></p>
+	</form>
+</div>
 {% endif %}
 {% endblock %}
