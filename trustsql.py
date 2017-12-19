@@ -27,4 +27,19 @@ class Trustsql(object):
 		retcode = self.libc.SignString(pPrvkey, pStr, c_int(len(pStr)), pSign);
 		return str(pSign.value, 'utf-8')
 
+	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
+		pSign = (c_char*98)()
+		pInfoKey = infoKey.encode('utf-8')
+		nInfoVersion = c_uint(infoVersion)
+		nState = c_uint(state)
+		pContent = content.encode('utf-8')
+		pNotes = notes.encode('utf-8')
+		pCommitTime = commitTime.encode('utf-8')
+		pPrvkey = prvkey.encode('utf-8')
+
+		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
+		return str(pSign.value, 'utf-8')
+
+
+
 

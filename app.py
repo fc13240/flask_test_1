@@ -88,8 +88,8 @@ def login():
             form.prvkey.data = tsql.prvkey
 
             iss_form = IssSignForm()
-            iss_form.pPubkey.data = tsql.pubkey
-            
+            iss_form.pPrvkey.data = tsql.prvkey
+
             login_user(user)
             flash('"' + user.username + '" ' + '登录成功！')
             return render_template('trustsql.html', user=user, tsql=tsql, form=form, iss_form=iss_form)
@@ -138,13 +138,29 @@ def load_user(user_id):
 
 
 @app.route('/trustsql/signString', methods=['GET', 'POST'])
-def signStringWithPStr():
+def signString():
     if request.method == 'POST':
         prvkey = request.form['prvkey']
         pStr = request.form['pStr']
         sign = trustsql.signString(prvkey, pStr)
 
         return jsonify({'prvkey': prvkey, 'str': pStr, 'sign': sign})
+
+
+@app.route('/trustsql/issSign', methods=['GET', 'POST'])
+def issSign():
+    if request.method == 'POST':
+        pInfoKey = request.form['pInfoKey'];
+        nInfoVersion = request.form['nInfoVersion'];
+        nState = request.form['nState'];
+        pContent = request.form['pContent'];
+        pNotes = request.form['pNotes'];
+        pCommitTime = request.form['pCommitTime'];
+        pPrvkey = request.form['pPrvkey'];
+
+        sign = trustsql.issSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey)
+
+        return jsonify({'sign': sign})
 
 
 if __name__ == '__main__':

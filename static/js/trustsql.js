@@ -15,8 +15,6 @@ $(function() {
 			data: data,
 		})
 		.done(function(data) {
-			console.log('ggg');
-			console.log(data);
 			$('#signStringResult').text(data['sign']);
 		})
 		.fail(function() {
@@ -25,5 +23,45 @@ $(function() {
 		.always(function() {
 			console.log("complete");
 		});
+	});
+
+	$('#trustsql_issSign').click(function() {
+		var pInfoKey = $('#iss_form_pInfoKey').val();
+		var nInfoVersion = $('#iss_form_nInfoVersion').val();
+		var nState = $('#iss_form_nState').val();
+		var pContent = $('#iss_form_pContent').val();
+		var pNotes = $('#iss_form_pNotes').val();
+		var pCommitTime = $('#iss_form_pCommitTime').val();
+		var pPubkey = $('#iss_form_pPubkey').val();
+
+		var data = {
+			'pInfoKey': pInfoKey,
+			'nInfoVersion': nInfoVersion,
+			'nState': nState,
+			'pContent': pContent,
+			'pNotes': pNotes,
+			'pCommitTime': pCommitTime,
+			'pPubkey': pPubkey
+		}
+
+		$.ajax({
+			url: '/trustsql/issSign',
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(data) {
+			console.log("success");
+			$('#issSignResult').text(data['sign']);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+
+
 	})
 })
