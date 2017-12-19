@@ -3,7 +3,7 @@ $(function() {
 		console.log('start sign')
 		var data = {};
 		data = $('#trustsql_signString').serialize();
-		print('post: ' + data)
+		console.log('post: ' + data)
 		$.ajax({
 			url: '/trustsql/signString',
 			type: 'POST',
@@ -11,7 +11,8 @@ $(function() {
 			data: data,
 		})
 		.done(function(data) {
-			console.log('success: ' + data + data['sign']);
+			console.log(data['sign'])
+			console.log('success: ' + data);
 			$('#signStringResult').text(data['sign']);
 		})
 		.fail(function() {
