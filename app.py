@@ -6,7 +6,7 @@ from flask import (Flask, render_template, redirect, url_for, request, flash, js
 from flask_bootstrap import Bootstrap
 from flask_login import login_required, login_user, logout_user, current_user
 
-from forms import TodoListForm, LoginForm, RegisterForm, SignStringForm, IssSignForm
+from forms import TodoListForm, LoginForm, RegisterForm, SignStringForm, IssSignForm, IssAppendForm
 from ext import db, login_manager
 from models import TodoList, User, TrustSQL
 from trustsql import Trustsql
@@ -90,9 +90,11 @@ def login():
             iss_form = IssSignForm()
             iss_form.pPrvkey.data = tsql.prvkey
 
+            iss_append_form = IssAppendForm()
+
             login_user(user)
             flash('"' + user.username + '" ' + '登录成功！')
-            return render_template('trustsql.html', user=user, tsql=tsql, form=form, iss_form=iss_form)
+            return render_template('trustsql.html', user=user, tsql=tsql, form=form, iss_form=iss_form, iss_append_form=iss_append_form)
         else:
             flash('Invalid username or password')
     form = LoginForm()
@@ -118,8 +120,15 @@ def register():
             login_user(t_user)
 
             form = SignStringForm()
+            form.prvkey.data = tsql.prvkey
+
+            iss_form = IssSignForm()
+            iss_form.pPrvkey.data = tsql.prvkey_key
+
+            iss_append_form = IssAppendForm()
+
             flash('你已成功注册')
-            return render_template('trustsql.html', user=t_user, tsql=tsql, form=form)
+            return render_template('trustsql.html', user=t_user, tsql=tsql, form=form, iss_form=iss_form, iss_append_form=iss_append_form)
     form = LoginForm()
     re_form = RegisterForm()
     return render_template('login.html', form=form, re_form=re_form)
@@ -161,6 +170,19 @@ def issSign():
         sign = trustsql.issSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey)
 
         return jsonify({'sign': sign})
+
+@app.route('/trustsql/issAppend', methods=['GET', 'POST'])
+def issAppend():
+    if request.method == 'POST':
+        pInfoKey = request.form['pInfoKey'];
+        nInfoVersion = request.form['nInfoVersion'];
+        nState = request.form['nState'];
+        pContent = request.form['pContent'];
+        pNotes = request.form['pNotes'];
+        pCommitTime = request.form['pCommitTime'];
+        pPrvkey = request.form['pPrvkey'];
+        pPubkey = request.form['pPubkey'];
+
 
 
 if __name__ == '__main__':

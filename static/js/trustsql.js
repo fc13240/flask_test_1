@@ -36,8 +36,6 @@ $(function() {
 		var pCommitTime = $('#iss_form_pCommitTime').val();
 		var pPrvkey = $('#iss_form_pPrvkey').val();
 
-		console.log(pContent);
-
 		var data = {
 			'pInfoKey': pInfoKey,
 			'nInfoVersion': nInfoVersion,
@@ -47,8 +45,6 @@ $(function() {
 			'pCommitTime': pCommitTime,
 			'pPrvkey': pPrvkey
 		};
-
-		console.log(data);
 
 		$.ajax({
 			url: '/trustsql/issSign',
@@ -67,8 +63,43 @@ $(function() {
 		.always(function() {
 			console.log("complete");
 		});
-		
+	});
 
+	$('#trustsql_issAppend').click(function() {
+		console.log('start issAppend');
 
+		var pInfoKey = $('#iss_append_form_pInfoKey').val();
+		var nInfoVersion = $('#iss_append_form_nInfoVersion').val();
+		var nState = $('#iss_append_form_nState').val();
+		var pContent = $('#iss_append_form_pContent').val();
+		var pNotes = $('#iss_append_form_pNotes').val();
+		var pCommitTime = $('#iss_append_form_pCommitTime').val();
+
+		var data = {
+			'pInfoKey': pInfoKey,
+			'nInfoVersion': nInfoVersion,
+			'nState': nState,
+			'pContent': JSON.stringify(pContent),
+			'pNotes': JSON.stringify(pNotes),
+			'pCommitTime': pCommitTime
+		};
+
+		$.ajax({
+			url: '/trustsql/issSign',
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(data) {
+			console.log("success");
+			console.log(data);
+			$('#issSignResult').text(data);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
 	})
 })

@@ -49,10 +49,25 @@ class Trustsql(object):
 
 	def iss_append(self, info_key, info_version, state, content, notes, commit_time, address, public_key, prvkey_key):
 		url = self.host + '/trustsql_iss_append.cgi'
-
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
 
-		return sign
+		data = {
+			'version': self.version,
+			'sign_type': self.sign_type,
+			'mch_id': self.mch_id,
+			'mch_sign': self.mch_sign,
+			'info_key': info_key,
+			'info_version': info_version,
+			'state': state,
+			'content': content,
+			'notes': notes,
+			'commit_time': commit_time,
+			'public_key': public_key
+		};
+
+		r = requests.post(url, data=data)
+		print(r)
+		return r
 
 
 

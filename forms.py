@@ -39,4 +39,13 @@ class IssSignForm(FlaskForm):
 	pPrvkey = StringField('存放共享信息发起方的私钥', validators=[DataRequired()])
 
 
+class IssAppendForm(FlaskForm):
+	pInfoKey = StringField('自定义的信息单号', validators=[DataRequired()])
+	nInfoVersion = IntegerField('共享信息版本', validators=[DataRequired()])
+	nState = IntegerField('共享信息状态编码', validators=[DataRequired()])
+	pContent = StringField('存放content', validators=[DataRequired()])
+	pNotes = StringField('存放notes', validators=[DataRequired()])
+	pCommitTime = DateTimeField('提交共享信息时间', validators=[DataRequired()])
+
+
 

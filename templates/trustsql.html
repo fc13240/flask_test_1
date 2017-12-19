@@ -18,65 +18,97 @@
 <hr style="border: 1 dashed #987cb9" color=#987cb9 size=1>
 <div class="col-md-6">
 	<div class="row">
-	<h6 class="form-signin-heading">为字符串签名</h6>
-	<form id="signString_form">
-		<div class="form-group required">
-			{{ form.prvkey.label }}
-			{{ form.prvkey(id="signString_form_prvkey") }}
-		</div>
-		<div class="form-group required">
-			{{ form.pStr.label }}
-			{{ form.pStr(id="signString_form_pStr") }}
-		</div>
-		<button type="button" id="trustsql_signString">提交</button>
-		<div class="signResult">
-			签名结果：<span id="signStringResult"></span>
-		</div>
-	</form>
-</div>
-<hr style="border: 1 dashed #987cb9" color=#987cb9 size=1>
-<div class="row">
-	<h6 class="form-signin-heading">生成共享信息签名</h6>
-	<form id="issSign_form">
-		<div class="form-group required">
-			{{ iss_form.pInfoKey.label }}
-			{{ iss_form.pInfoKey(id="iss_form_pInfoKey") }}
-		</div>
-		<div class="form-group required">
-			{{ iss_form.nInfoVersion.label }}
-			{{ iss_form.nInfoVersion(id="iss_form_nInfoVersion") }}
-		</div>
-		<div class="form-group required">
-			{{ iss_form.nState.label }}
-			{{ iss_form.nState(id="iss_form_nState") }}
-		</div>
-		<div class="form-group required">
-			{{ iss_form.pContent.label }}
-			{{ iss_form.pContent(id="iss_form_pContent") }}
-		</div>
-		<div class="form-group required">
-			{{ iss_form.pNotes.label }}
-			{{ iss_form.pNotes(id="iss_form_pNotes") }}
-		</div>
-		<div class="form-group required">
-			{{ iss_form.pCommitTime.label }}
-			{{ iss_form.pCommitTime(type="datetime", id="iss_form_pCommitTime") }}
-		</div>
-		<div class="form-group required">
-			{{ iss_form.pPrvkey.label }}
-			{{ iss_form.pPrvkey(id="iss_form_pPrvkey") }}
-		</div>
-		<button type="button" id="trustsql_issSign">提交</button>
-		<div class="signResult">
-			签名结果：<span id="issSignResult"></span>
-		</div>
-	</form>
-</div>
-<hr style="border: 1 dashed #987cb9" color=#987cb9 size=1>
+		<h6 class="form-signin-heading">为字符串签名</h6>
+		<form id="signString_form">
+			<div class="form-group required">
+				{{ form.prvkey.label }}
+				{{ form.prvkey(id="signString_form_prvkey") }}
+			</div>
+			<div class="form-group required">
+				{{ form.pStr.label }}
+				{{ form.pStr(id="signString_form_pStr") }}
+			</div>
+			<button type="button" id="trustsql_signString">提交</button>
+			<div class="signResult">
+				签名结果：<span id="signStringResult"></span>
+			</div>
+		</form>
+	</div>
+	<hr style="border: 1 dashed #987cb9" color=#987cb9 size=1>
+	<div class="row">
+		<h6 class="form-signin-heading">生成共享信息签名</h6>
+		<form id="issSign_form">
+			<div class="form-group required">
+				{{ iss_form.pInfoKey.label }}
+				{{ iss_form.pInfoKey(id="iss_form_pInfoKey") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_form.nInfoVersion.label }}
+				{{ iss_form.nInfoVersion(id="iss_form_nInfoVersion") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_form.nState.label }}
+				{{ iss_form.nState(id="iss_form_nState") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_form.pContent.label }}
+				{{ iss_form.pContent(id="iss_form_pContent") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_form.pNotes.label }}
+				{{ iss_form.pNotes(id="iss_form_pNotes") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_form.pCommitTime.label }}
+				{{ iss_form.pCommitTime(type="datetime", id="iss_form_pCommitTime") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_form.pPrvkey.label }}
+				{{ iss_form.pPrvkey(id="iss_form_pPrvkey") }}
+			</div>
+			<button type="button" id="trustsql_issSign">提交</button>
+			<div class="signResult">
+				签名结果：<span id="issSignResult"></span>
+			</div>
+		</form>
+	</div>
+	<hr style="border: 1 dashed #987cb9" color=#987cb9 size=1>
 </div>
 <div class="col-md-6">
 	<h4>访问trustSQL 应用层接口</h4>
-	
+	<div class="row">
+		<h6 class="form-signin-heading">共享信息新增/追加</h6>
+		<form id="issAppend_form">
+			<div class="form-group required">
+				{{ iss_append_form.pInfoKey.label }}
+				{{ iss_append_form.pInfoKey(id="iss_append_form_pInfoKey") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_append_form.nInfoVersion.label }}
+				{{ iss_append_form.nInfoVersion(id="iss_append_form_nInfoVersion") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_append_form.nState.label }}
+				{{ iss_append_form.nState(id="iss_append_form_nState") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_append_form.pContent.label }}
+				{{ iss_append_form.pContent(id="iss_append_form_pContent") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_append_form.pNotes.label }}
+				{{ iss_append_form.pNotes(id="iss_append_form_pNotes") }}
+			</div>
+			<div class="form-group required">
+				{{ iss_append_form.pCommitTime.label }}
+				{{ iss_append_form.pCommitTime(type="datetime", id="iss_append_form_pCommitTime") }}
+			</div>
+			<button type="button" id="trustsql_issAppend">提交</button>
+			<div class="signResult">
+				增加结果：<span id="issAppendResult"></span>
+			</div>
+		</form>
+	</div>
 </div>
 
 {% endif %}
