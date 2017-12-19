@@ -1,7 +1,5 @@
 $(function() {
 	$('#trustsql_signString').click(function() {
-		console.log('start sign');
-
 		var prvkey = $('#signString_form_prvkey').val();
 		var pStr = $('#signString_form_pStr').val();
 
