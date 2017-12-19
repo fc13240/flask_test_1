@@ -26,6 +26,8 @@ $(function() {
 	});
 
 	$('#trustsql_issSign').click(function() {
+		console.log('start issSign');
+
 		var pInfoKey = $('#iss_form_pInfoKey').val();
 		var nInfoVersion = $('#iss_form_nInfoVersion').val();
 		var nState = $('#iss_form_nState').val();
@@ -33,6 +35,8 @@ $(function() {
 		var pNotes = $('#iss_form_pNotes').val();
 		var pCommitTime = $('#iss_form_pCommitTime').val();
 		var pPubkey = $('#iss_form_pPubkey').val();
+
+		console.log('get vals');
 
 		var data = {
 			'pInfoKey': pInfoKey,
@@ -42,7 +46,9 @@ $(function() {
 			'pNotes': pNotes,
 			'pCommitTime': pCommitTime,
 			'pPubkey': pPubkey
-		}
+		};
+
+		console.log(data);
 
 		$.ajax({
 			url: '/trustsql/issSign',
