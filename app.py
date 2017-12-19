@@ -161,7 +161,7 @@ def issSign():
         print(pInfoKey)
         print(pContent)
 
-        sign = trustsql.issSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey)
+        sign = trustsql.issSign(pInfoKey, int(nInfoVersion), int(nState), pContent, pNotes, pCommitTime, pPrvkey)
 
         return jsonify({'sign': sign})
 
