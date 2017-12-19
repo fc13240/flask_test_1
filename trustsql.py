@@ -20,7 +20,7 @@ class Trustsql(object):
 
 	def signString(self, prvkey, pStr):
 		pSign = (c_char*98)()
-		nLen = 98
+		nLen = (c_int*98)()
 
 		retcode = self.libc.SignString(prvkey, pStr, nLen, pSign);
 		print(str(pSign.value, 'utf-8'))
