@@ -158,7 +158,7 @@ def issSign():
         pCommitTime = request.form['pCommitTime'];
         pPrvkey = request.form['pPrvkey'];
 
-        sign = trustsql.issSign(pInfoKey, int(nInfoVersion), int(nState), pContent, pNotes, pCommitTime, pPrvkey)
+        sign = trustsql.issSign(pInfoKey, int(nInfoVersion), int(nState), jsonify(pContent), jsonify(pNotes), pCommitTime, pPrvkey)
 
         return jsonify({'sign': sign})
 
