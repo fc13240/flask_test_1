@@ -15,6 +15,7 @@
 	<p>私钥：{{ tsql.prvkey }}</p><hr>
 	<p>公钥：{{ tsql.pubkey }}</p><hr>
 </div>
+<hr style="border: 1 dashed #987cb9" color=#987cb9 size=1>
 <div class="row">
 	<p class="form-signin-heading">为字符串签名</p>
 	<form id="signString_form">
@@ -30,8 +31,7 @@
 		<p>签名结果：<span id="signStringResult"></span></p>
 	</form>
 </div>
-<hr>
-<hr>
+<hr style="border: 1 dashed #987cb9" color=#987cb9 size=1>
 <div class="row">
 	<p class="form-signin-heading">生成共享信息签名</p>
 	<form id="issSign_form">
@@ -67,5 +67,6 @@
 		<p>签名结果：<span id="issSignResult"></span></p>
 	</form>
 </div>
+<hr style="border: 1 dashed #987cb9" color=#987cb9 size=1>
 {% endif %}
 {% endblock %}
