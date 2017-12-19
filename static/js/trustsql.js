@@ -6,10 +6,8 @@ $(function() {
 		var pStr = $('#signString_form_pStr').val()
 
 		var data = {
-			data: JSON.stringify({
-				'prvkey': prvkey,
-				'pStr': pStr
-			})
+			'prvkey': prvkey,
+			'pStr': pStr
 		}
 
 		$.ajax({
