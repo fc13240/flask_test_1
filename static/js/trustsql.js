@@ -42,8 +42,8 @@ $(function() {
 			'pInfoKey': pInfoKey,
 			'nInfoVersion': nInfoVersion,
 			'nState': nState,
-			'pContent': pContent,
-			'pNotes': pNotes,
+			'pContent': JSON.stringify(pContent),
+			'pNotes': JSON.stringify(pNotes),
 			'pCommitTime': pCommitTime,
 			'pPubkey': pPubkey
 		};
