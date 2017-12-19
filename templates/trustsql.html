@@ -26,7 +26,7 @@
 			{{ form.pStr.label }}
 			{{ form.pStr }}
 		</div>
-		<button type="button" id="trustsql_signString">提交</button>
+		{{ form.submit(class="btn btn-info submit" id="trustsql_signString") }}
 		<p>签名结果：<span id="signStringResult"></span></p>
 	</form>
 </div>
