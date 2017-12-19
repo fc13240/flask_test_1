@@ -20,13 +20,13 @@
 	<form id="signString_form">
 		<div class="form-group required">
 			{{ form.prvkey.label }}
-			{{ form.prvkey }}
+			{{ form.prvkey(id="signString_form_prvkey") }}
 		</div>
 		<div class="form-group required">
 			{{ form.pStr.label }}
-			{{ form.pStr }}
+			{{ form.pStr(id="signString_form_pStr") }}
 		</div>
-		{{ form.submit(class="btn btn-info submit", id="trustsql_signString") }}
+		<button type="button" id="trustsql_signString">提交</button>
 		<p>签名结果：<span id="signStringResult"></span></p>
 	</form>
 </div>

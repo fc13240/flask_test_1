@@ -1,9 +1,16 @@
 $(function() {
 	$('#trustsql_signString').click(function() {
 		console.log('start sign');
-		var data = {};
-		data = $('#signString_form').serialize();
-		console.log('post: ' + data);
+
+		var prvkey = $('#signString_form_prvkey').val()
+		var pStr = $('#signString_form_pStr').val()
+
+		var data = {
+			data: JSON.stringify({
+				'prvkey': prvkey,
+				'pStr': pStr
+			})
+		}
 
 		$.ajax({
 			url: '/trustsql/signString',
