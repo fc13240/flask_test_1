@@ -12,7 +12,7 @@ $(function() {
 		var data = {
 			'prvkey': prvkey,
 			'pStr': pStr
-		}
+		};
 
 		console.log(data);
 
