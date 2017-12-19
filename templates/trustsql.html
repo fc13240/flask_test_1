@@ -26,7 +26,7 @@
 			{{ form.pStr.label }}
 			{{ form.pStr }}
 		</div>
-		{{ form.submit(class="btn btn-info submit" onclick="signString();") }}
+		<button type="button" onclick="signString();"></button>
 		{% if tsql.signstring %}
 		<p>签名结果：<span>{{ tsql.signstring }}</span></p>
 		{% endif %}
