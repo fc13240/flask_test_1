@@ -88,7 +88,9 @@ class Trustsql(object):
 			'address': self.mch_address,
 			'public_key': self.mch_pubkey,
 			'sign': sign
-		};
+		}
+
+		print('post: ' + data)
 
 		r = requests.post(url, data=data)
 		print(r.json())
