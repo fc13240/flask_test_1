@@ -79,10 +79,21 @@ class Trustsql(object):
 		address = self.generateAddrByPubkey(public_key)
 
 
-		data_string = '{"address": address,"commit_time": commit_time,"content": content,"info_key": info_key,"info_version": info_version,"mch_id": self.mch_id,"notes": notes,"public_key": public_key,"sign": sign,"sign_type": self.sign_type,"state": state,"version": self.version}'
-		print(data_string)
-		data = json.loads(data_string)
-		print(data)
+		data = {
+			"address": address,
+			"commit_time": commit_time,
+			"content": content,
+			"info_key": info_key,
+			"info_version": info_version,
+			"mch_id": self.mch_id,
+			"notes": notes,
+			"public_key": public_key,
+			"sign": sign,
+			"sign_type": self.sign_type,
+			"state": state,
+			"version": self.version
+		}
+
 		mch_sign_string = ""
 		for k, v in data.items():
 			if k == "version":
@@ -94,11 +105,12 @@ class Trustsql(object):
 		print(mch_sign_string)
 		mch_sign_result = self.signString(self.mch_prvkey, mch_sign_string)
 		data['mch_sign'] = mch_sign_result
-		print('-------------------------')
+
 		print(data)
-		print(type(data))
-		post_data = data
+		print(type(json.dumps(data)))
+		post_data = json.loads(json.dumps(data))
 		print('-------------------------')
+		print(post_data)
 
 		
 
