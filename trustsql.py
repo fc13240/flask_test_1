@@ -100,16 +100,38 @@ class Trustsql(object):
 		}
 
 		mch_sign_string = ''
-		print(len(data))
+		data_count = len(data)
+		index = 0
 		for k, v in data.items():
-			mch_sign_string += k + '=' + v + '&'
+			index += 1
+			if index == data_count:
+				mch_sign_string += k + '=' + v
+			else:
+				mch_sign_string += k + '=' + v + '&'
+
 
 		print(mch_sign_string)
 		mch_sign_result = self.signString(prvkey_key, mch_sign_string)
 		print(mch_sign_result)
 
+		post_data = {
+			'address': address,
+			'commit_time': commit_time,
+			'content': content,
+			'info_key': info_key,
+			'info_version': info_version,
+			'mch_id': self.mch_id,
+			'notes': notes,
+			'public_key': public_key,
+			'sign': sign,
+			'sign_type': self.sign_type,
+			'state': state,
+			'version': self.version,
+			'mch_sign': mch_sign_result
+		}
 
-		r = requests.post(url, data=data)
+
+		r = requests.post(url, data=post_data)
 		print(r.json())
 		return r.json()
 
