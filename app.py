@@ -172,18 +172,26 @@ def issSign():
         return jsonify({'sign': sign})
 
 @app.route('/trustsql/issAppend', methods=['GET', 'POST'])
-def issAppend():
+@login_manager.user_loader
+def issAppend(user_id):
     if request.method == 'POST':
+        tsql = TrustSQL.query.filter_by(user_id=user_id).first_or_404()
+
         pInfoKey = request.form['pInfoKey'];
         nInfoVersion = request.form['nInfoVersion'];
         nState = request.form['nState'];
         pContent = request.form['pContent'];
         pNotes = request.form['pNotes'];
         pCommitTime = request.form['pCommitTime'];
+        pPrvkey = tsql.prvkey;
+        pPubkey = tsql.pubkey;
 
-        
-        pPrvkey = request.form['pPrvkey'];
-        pPubkey = request.form['pPubkey'];
+        print(pPrvkey)
+        print(pPubkey)
+
+        r = trustsql.iss_append(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pPubkey)
+        return r;
+
 
 
 
