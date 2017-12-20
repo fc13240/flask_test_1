@@ -111,19 +111,19 @@ class Trustsql(object):
 		mch_sign_result = self.signString(self.mch_prvkey, mch_sign_string)
 
 		post_data = {
-			'address': address,
-			'commit_time': commit_time,
-			'content': content,
-			'info_key': info_key,
-			'info_version': info_version,
-			'mch_id': self.mch_id,
-			'notes': notes,
-			'public_key': self.mch_pubkey,
-			'sign': sign,
-			'sign_type': self.sign_type,
-			'state': state,
-			'version': self.version,
-			'mch_sign': mch_sign_result
+			"address": address,
+			"commit_time": commit_time,
+			"content": content,
+			"info_key": info_key,
+			"info_version": info_version,
+			"mch_id": self.mch_id,
+			"notes": notes,
+			"public_key": self.mch_pubkey,
+			"sign": sign,
+			"sign_type": self.sign_type,
+			"state": state,
+			"version": self.version,
+			"mch_sign": mch_sign_result
 		}
 
 
