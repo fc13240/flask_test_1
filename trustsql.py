@@ -111,7 +111,7 @@ class Trustsql(object):
 
 
 		print(mch_sign_string)
-		mch_sign_result = self.signString(prvkey_key, mch_sign_string)
+		mch_sign_result = self.signString(self.mch_prvkey, mch_sign_string)
 		print(mch_sign_result)
 
 		post_data = {
