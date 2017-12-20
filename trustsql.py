@@ -83,7 +83,7 @@ class Trustsql(object):
 		print(type(content))
 		print(type(json.loads(content)))
 
-		mch_sign_string = address=address&commit_time=commit_time&content=json.loads(content)&info_key=info_key&info_version=int(info_version)&mch_id=self.mch_id&notes=json.loads(notes)&public_key=public_key&state=int(state)&sign=sign&sign_type=self.sign_type&version=self.version
+		mch_sign_string = str(address=address&commit_time=commit_time&content=json.loads(content)&info_key=info_key&info_version=int(info_version)&mch_id=self.mch_id&notes=json.loads(notes)&public_key=public_key&state=int(state)&sign=sign&sign_type=self.sign_type&version=self.version)
 		print(mch_sign_string)
 		mch_sign_result = self.signString(prvkey_key, mch_sign_string)
 		print(mch_sign_result)
