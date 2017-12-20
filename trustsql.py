@@ -137,7 +137,7 @@ class Trustsql(object):
 			'address': address,
 			'mch_id': self.mch_id,
 			'sign_type': self.sign_type,
-			'timestamp': timestamp,
+			'timestamp': str(timestamp),
 			'version': self.version
 		}
 
