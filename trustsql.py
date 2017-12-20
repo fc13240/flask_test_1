@@ -54,7 +54,6 @@ class Trustsql(object):
 
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
 		print(content)
-		print('pContent: ' + json.dumps(json.loads(content)))
 		pSign = (c_char*98)()
 		pInfoKey = infoKey.encode('utf-8')
 		nInfoVersion = c_uint(int(infoVersion))
@@ -64,7 +63,7 @@ class Trustsql(object):
 		pCommitTime = commitTime.encode('utf-8')
 		pPrvkey = prvkey.encode('utf-8')
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
-		print(pContent)
+
 		return str(pSign.value, 'utf-8')
 
 
@@ -75,9 +74,9 @@ class Trustsql(object):
 
 	def iss_append(self, info_key, info_version, state, content, notes, commit_time, prvkey_key, public_key):
 		url = self.host + '/trustsql_iss_append.cgi'
-		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, self.mch_prvkey)
+		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
 		print('sign: ' + sign)
-		address = self.generateAddrByPubkey(self.mch_pubkey)
+		address = self.generateAddrByPubkey(public_key)
 
 
 		data = {
@@ -88,7 +87,7 @@ class Trustsql(object):
 			'info_version': info_version,
 			'mch_id': self.mch_id,
 			'notes': notes,
-			'public_key': self.mch_pubkey,
+			'public_key': public_key,
 			'sign': sign,
 			'sign_type': self.sign_type,
 			'state': state,
@@ -107,19 +106,19 @@ class Trustsql(object):
 		mch_sign_result = self.signString(self.mch_prvkey, mch_sign_string)
 
 		post_data = {
-			"address": address,
-			"commit_time": commit_time,
-			"content": content,
-			"info_key": info_key,
-			"info_version": info_version,
-			"mch_id": self.mch_id,
-			"notes": notes,
-			"public_key": self.mch_pubkey,
-			"sign": sign,
-			"sign_type": self.sign_type,
-			"state": state,
-			"version": self.version,
-			"mch_sign": mch_sign_result
+			'address': address,
+			'commit_time': commit_time,
+			'content': content,
+			'info_key': info_key,
+			'info_version': info_version,
+			'mch_id': self.mch_id,
+			'notes': notes,
+			'public_key': public_key,
+			'sign': sign,
+			'sign_type': self.sign_type,
+			'state': state,
+			'version': self.version,
+			'mch_sign': mch_sign_result
 		}
 
 
