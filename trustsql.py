@@ -164,6 +164,9 @@ class Trustsql(object):
 
 
 	def user_register(self, user_id, public_key, user_fullName):
+		print(user_id)
+		print(public_key)
+		print(user_fullName)
 		url = self.host + '/api/user_cert/register'
 		data = {
 			'user_id': user_id,
