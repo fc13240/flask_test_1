@@ -72,11 +72,11 @@ class Trustsql(object):
 
 	def iss_append(self, info_key, info_version, state, content, notes, commit_time, prvkey_key, public_key):
 		url = self.host + '/trustsql_iss_append.cgi'
-		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, self.mch_prvkey)
+		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
 		print('sign: ' + sign)
-		# address = self.generateAddrByPubkey(public_key)
+		address = self.generateAddrByPubkey(public_key)
 
-		self.issVerifySign(info_key, info_version, state, content, notes, commit_time, self.mch_pubkey, sign)
+		self.issVerifySign(info_key, info_version, state, content, notes, commit_time, public_key, sign)
 
 		print(type(content))
 		print(type(json.loads(content)))
@@ -92,8 +92,8 @@ class Trustsql(object):
 			'content': json.loads(content),
 			'notes': json.loads(notes),
 			'commit_time': commit_time,
-			'address': self.mch_address,
-			'public_key': self.mch_pubkey,
+			'address': address,
+			'public_key': public_key,
 			'sign': sign
 		}
 
