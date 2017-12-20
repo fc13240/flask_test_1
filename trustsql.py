@@ -74,7 +74,8 @@ class Trustsql(object):
 			'notes': notes,
 			'commit_time': commit_time,
 			'address': address,
-			'public_key': public_key
+			'public_key': public_key,
+			'sign': 'sign'
 		};
 
 		r = requests.post(url, data=data)
