@@ -200,6 +200,14 @@ def issQuery():
         else:
             flash(r['retmsg'])
 
+@app.route('/trustsql/user_register', methods=['GET', 'POST'])
+def trustsqlUserRegister():
+    if request.method == 'POST':
+        tsql = TrustSQL.query.filter_by(user_id=current_user.id).first_or_404()
+        r = trustsql.user_register(current_user.id, tsql.pubkey, current_user.username)
+        print(r)
+        return jsonify(r)
+
 
 
 

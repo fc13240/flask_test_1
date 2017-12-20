@@ -76,13 +76,13 @@ $(function() {
 		// var pCommitTime = $('#iss_append_form_pCommitTime').val();
 
 		var pContent = {
-			// "id": "111111",
-			// "author": "yuham"
+			"id": "111111",
+			"author": "yuham"
 		};
 
 		var pNotes = {
-			// "note": "stupid man",
-			// "desc": "hahahahahaha"
+			"note": "stupid man",
+			"desc": "hahahahahaha"
 		};
 
 		var pCommitTime = '2017-12-20 14:30:00'
@@ -131,6 +131,31 @@ $(function() {
 			console.log("success");
 			console.log(data['infos']);
 			$('#issQueryResult').text(JSON.stringify(data['infos']));
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});
+
+	$('#trustsql_userRegister').click(function() {
+		console.log('start userRegister');
+
+		var data = {
+		};
+
+		$.ajax({
+			url: '/trustsql/user_register',
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(data) {
+			console.log("success");
+			console.log(data['infos']);
+			$('#userRegisterResult').text(JSON.stringify(data));
 		})
 		.fail(function() {
 			console.log("error");
