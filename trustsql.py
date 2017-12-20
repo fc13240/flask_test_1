@@ -100,12 +100,17 @@ class Trustsql(object):
 		}
 
 		mch_sign_string = ''
-		data_count = len(data)
-		index = 0
 		for k, v in data.items():
-			index += 1
-			if index == data_count:
+			if k == 'version':
 				mch_sign_string += k + '=' + v
+			elif k == 'content':
+				mch_sign_string += k + '=' + json.loads(v) + '&'
+			elif k == 'notes':
+				mch_sign_string += k + '=' + json.loads(v) + '&'
+			elif k == 'info_version':
+				mch_sign_string += k + '=' + int(v) + '&'
+			elif k == 'state':
+				mch_sign_string += k + '=' + int(v) + '&'
 			else:
 				mch_sign_string += k + '=' + v + '&'
 
@@ -116,15 +121,15 @@ class Trustsql(object):
 		post_data = {
 			'address': address,
 			'commit_time': commit_time,
-			'content': content,
+			'content': json.loads(content),
 			'info_key': info_key,
-			'info_version': info_version,
+			'info_version': int(info_version),
 			'mch_id': self.mch_id,
-			'notes': notes,
+			'notes': json.loads(notes),
 			'public_key': public_key,
 			'sign': sign,
 			'sign_type': self.sign_type,
-			'state': state,
+			'state': int(state),
 			'version': self.version,
 			'mch_sign': mch_sign_result
 		}
