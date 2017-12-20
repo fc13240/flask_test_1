@@ -185,6 +185,13 @@ def issAppend():
         pPrvkey = tsql.prvkey;
         pPubkey = tsql.pubkey;
 
+        print(pInfoKey)
+        print(nInfoVersion)
+        print(nState)
+        print(pContent)
+        print(pNotes)
+        print(pCommitTime)
+
         r = trustsql.iss_append(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pPubkey)
         return r;
 
@@ -204,7 +211,7 @@ def issQuery():
 def trustsqlUserRegister():
     if request.method == 'POST':
         tsql = TrustSQL.query.filter_by(user_id=current_user.id).first_or_404()
-        
+
         r = trustsql.user_register(current_user.id, tsql.pubkey, current_user.username)
         print(r)
         return jsonify(r)
