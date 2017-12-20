@@ -26,13 +26,22 @@ class Trustsql(object):
 		retcode = self.libc.GeneratePubkeyByPrvkey(pPrvkey, pPubkey)
 		return str(pPubkey.value, 'utf-8')
 
+
+	def generateAddrByPubkey(self, pPubkey):
+		pAddr = (c_char*35)()
+		retcode = self.libc.GenerateAddrByPubkey(pPubkey, pAddr)
+
+		return str(pAddr.value, 'utf-8')
+
+
 	def signString(self, prvkey, p_Str):
 		pSign = (c_char*98)()
 		pPrvkey = prvkey.encode('utf-8')
 		pStr = p_Str.encode('utf-8')
+		retcode = self.libc.SignString(pPrvkey, pStr, c_int(len(pStr)), pSign)
 
-		retcode = self.libc.SignString(pPrvkey, pStr, c_int(len(pStr)), pSign);
 		return str(pSign.value, 'utf-8')
+
 
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
 		pSign = (c_char*98)()
@@ -43,13 +52,16 @@ class Trustsql(object):
 		pNotes = json.loads(notes).encode('utf-8')
 		pCommitTime = commitTime.encode('utf-8')
 		pPrvkey = prvkey.encode('utf-8')
-
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
+
 		return str(pSign.value, 'utf-8')
 
-	def iss_append(self, info_key, info_version, state, content, notes, commit_time, address, prvkey_key, public_key):
+
+	def iss_append(self, info_key, info_version, state, content, notes, commit_time, prvkey_key, public_key):
 		url = self.host + '/trustsql_iss_append.cgi'
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
+		address = self.generateAddrByPubkey(public_key)
+		print(address)
 		print(sign)
 		data = {
 			'version': self.version,
@@ -62,6 +74,7 @@ class Trustsql(object):
 			'content': content,
 			'notes': notes,
 			'commit_time': commit_time,
+			'address': address
 			'public_key': public_key
 		};
 
