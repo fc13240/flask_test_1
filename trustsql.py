@@ -87,7 +87,6 @@ class Trustsql(object):
 			'version': self.version,
 			'sign_type': self.sign_type,
 			'mch_id': self.mch_id,
-			'mch_sign': self.mch_sign,
 			'info_key': info_key,
 			'info_version': int(info_version),
 			'state': int(state),
@@ -95,7 +94,8 @@ class Trustsql(object):
 			'notes': json.loads(notes),
 			'commit_time': commit_time,
 			'address': address,
-			'public_key': public_key
+			'public_key': public_key,
+			'sign': sign
 		}
 
 		print(data)
