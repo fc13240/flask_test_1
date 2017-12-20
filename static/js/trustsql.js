@@ -71,16 +71,26 @@ $(function() {
 		var pInfoKey = $('#iss_append_form_pInfoKey').val();
 		var nInfoVersion = $('#iss_append_form_nInfoVersion').val();
 		var nState = $('#iss_append_form_nState').val();
-		var pContent = $('#iss_append_form_pContent').val();
-		var pNotes = $('#iss_append_form_pNotes').val();
+		// var pContent = $('#iss_append_form_pContent').val();
+		// var pNotes = $('#iss_append_form_pNotes').val();
 		var pCommitTime = $('#iss_append_form_pCommitTime').val();
+
+		var pContent = {
+			'id': '111111',
+			'author': 'yuham'
+		};
+
+		var pNotes = {
+			'note': 'stupid man',
+			'desc': 'hahahahahaha'
+		};
 
 		var data = {
 			'pInfoKey': pInfoKey,
 			'nInfoVersion': nInfoVersion,
 			'nState': nState,
-			'pContent': pContent,
-			'pNotes': pNotes,
+			'pContent': JSON.stringify(pContent),
+			'pNotes': JSON.stringify(pNotes),
 			'pCommitTime': pCommitTime
 		};
 
