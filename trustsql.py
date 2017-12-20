@@ -47,10 +47,10 @@ class Trustsql(object):
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
 		return str(pSign.value, 'utf-8')
 
-	def iss_append(self, info_key, info_version, state, content, notes, commit_time, address, public_key, prvkey_key):
+	def iss_append(self, info_key, info_version, state, content, notes, commit_time, address, prvkey_key, public_key):
 		url = self.host + '/trustsql_iss_append.cgi'
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
-
+		print(sign)
 		data = {
 			'version': self.version,
 			'sign_type': self.sign_type,
