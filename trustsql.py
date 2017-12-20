@@ -104,9 +104,9 @@ class Trustsql(object):
 			if k == 'version':
 				mch_sign_string += k + '=' + v
 			elif k == 'content':
-				mch_sign_string += k + '=' + json.loads(v) + '&'
+				mch_sign_string += k + '=' + json.dumps(json.loads(v)) + '&'
 			elif k == 'notes':
-				mch_sign_string += k + '=' + json.loads(v) + '&'
+				mch_sign_string += k + '=' + json.dumps(json.loads(v)) + '&'
 			elif k == 'info_version':
 				mch_sign_string += k + '=' + int(v) + '&'
 			elif k == 'state':
