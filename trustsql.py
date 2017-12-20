@@ -107,15 +107,9 @@ class Trustsql(object):
 		data['mch_sign'] = mch_sign_result
 
 		print(data)
-		print(type(json.dumps(data)))
-		post_data = json.loads(json.dumps(data))
-		print('-------------------------')
-		print(post_data)
+		print(type(data))
 
-		
-
-
-		r = requests.post(url, data=post_data)
+		r = requests.post(url, data=data)
 		print(r.json())
 		return r.json()
 
