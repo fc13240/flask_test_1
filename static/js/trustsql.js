@@ -113,5 +113,30 @@ $(function() {
 		.always(function() {
 			console.log("complete");
 		});
+	});
+
+	$('#trustsql_issQuery').click(function() {
+		console.log('start issQuery');
+
+		var data = {
+		};
+
+		$.ajax({
+			url: '/trustsql/issQuery',
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(data) {
+			console.log("success");
+			console.log(data);
+			$('#issQueryResult').text(data);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
 	})
 })

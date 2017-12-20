@@ -1,6 +1,7 @@
 from ctypes import *
 import requests
 import json
+import time
 
 class Trustsql(object):
 	"""docstring for Trustsql"""
@@ -78,11 +79,6 @@ class Trustsql(object):
 		print('sign: ' + sign)
 		address = self.generateAddrByPubkey(self.mch_pubkey)
 
-		self.issVerifySign(info_key, info_version, state, content, notes, commit_time, self.mch_pubkey, sign)
-
-		print(type(content))
-		print(type(json.loads(content)))
-
 
 		data = {
 			'address': address,
@@ -131,6 +127,32 @@ class Trustsql(object):
 		print(r.json())
 		return r.json()
 
+
+	def iss_query(self, info_key, info_version, state, content, notes, range, address, t_hash, page_no, page_limit, prvkey_key, public_key):
+		url = self.host + '/trustsql_iss_query.cgi'
+		address = self.generateAddrByPubkey(self.mch_pubkey)
+
+		timestamp = int(time.time())
+		data = {
+			'address': address,
+			'mch_id': self.mch_id,
+			'sign_type': self.sign_type,
+			'timestamp': timestamp,
+			'version': self.version
+		}
+
+		mch_sign_string = ''
+		for k, v in data.items():
+			if k == 'version':
+				mch_sign_string += k + '=' + v
+			else:
+				mch_sign_string += k + '=' + v + '&'
+
+		mch_sign_result = self.signString(self.mch_prvkey, mch_sign_string)
+
+		r = requests.post(url, data=post_data)
+		print(r.json())
+		return r.json()
 
 
 

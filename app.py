@@ -188,6 +188,13 @@ def issAppend():
         r = trustsql.iss_append(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pPubkey)
         return r;
 
+@app.route('/trustsql/issQuery', methods=['GET', 'POST'])
+def issQuery():
+    if request.method == 'POST':
+        
+        r = trustsql.iss_query('', '', '', '', '', '', '', '', '', '', '', '')
+        return r
+
 
 
 
