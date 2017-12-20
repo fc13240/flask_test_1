@@ -73,7 +73,7 @@ $(function() {
 		var nState = $('#iss_append_form_nState').val();
 		// var pContent = $('#iss_append_form_pContent').val();
 		// var pNotes = $('#iss_append_form_pNotes').val();
-		var pCommitTime = $('#iss_append_form_pCommitTime').val();
+		// var pCommitTime = $('#iss_append_form_pCommitTime').val();
 
 		var pContent = {
 			'id': '111111',
@@ -85,12 +85,14 @@ $(function() {
 			'desc': 'hahahahahaha'
 		};
 
+		var pCommitTime = '2017-12-20 14:30:00'
+
 		var data = {
 			'pInfoKey': pInfoKey,
 			'nInfoVersion': nInfoVersion,
 			'nState': nState,
-			'pContent': "{\"content\":\"test\"}",
-			'pNotes': "{\"notes\":\"test\"}",
+			'pContent': JSON.stringify(pContent),
+			'pNotes': JSON.stringify(pNotes),
 			'pCommitTime': pCommitTime
 		};
 
