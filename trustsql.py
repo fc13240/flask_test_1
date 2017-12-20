@@ -9,13 +9,13 @@ class Trustsql(object):
 		self.libc = cdll.LoadLibrary('../TrustSQL_SDK_V1.1.so')
 		self.host = 'https://open.trustsql.qq.com/cgi-bin/v1.0'
 
-		self.version = '1.0'
-		self.sign_type = 'ECDSA'
-		self.mch_id = 'gb8061f6b549ddc4f'
-		self.mch_sign = 'MEQCIHTM2q87F9PTUeSdZzNAN39eLwBaDKuPPnEdcHzizpTCAiBHn8pb+zasMGvcF/6qbJrG+1J1+bC+ilfnkZqwZmECwg=='
-		self.mch_prvkey = 'oe0xdfkch4a1VXaGH4VUmS+taXlj3gyvqUfbPl6tQ00='
-		self.mch_pubkey = 'BGCuRRVFPK8XGU6EVDxvALjKnjm/uURkZv9jV7q3aJYQqANoOHWhvd4HyE4e5ju74DXI4ZopcvoJUn/E52hujPo='
-		self.mch_address = '15kcSqCvrpEbrAgqDjPuW5mdSHULzvYNUD'
+		self.version = "1.0"
+		self.sign_type = "ECDSA"
+		self.mch_id = "gb8061f6b549ddc4f"
+		self.mch_sign = "MEQCIHTM2q87F9PTUeSdZzNAN39eLwBaDKuPPnEdcHzizpTCAiBHn8pb+zasMGvcF/6qbJrG+1J1+bC+ilfnkZqwZmECwg=="
+		self.mch_prvkey = "oe0xdfkch4a1VXaGH4VUmS+taXlj3gyvqUfbPl6tQ00="
+		self.mch_pubkey = "BGCuRRVFPK8XGU6EVDxvALjKnjm/uURkZv9jV7q3aJYQqANoOHWhvd4HyE4e5ju74DXI4ZopcvoJUn/E52hujPo="
+		self.mch_address = "15kcSqCvrpEbrAgqDjPuW5mdSHULzvYNUD"
 
 	def generatePairkey(self):
 		pPrvkey = (c_char*45)()
@@ -80,23 +80,23 @@ class Trustsql(object):
 
 
 		data = {
-			'address': address,
-			'commit_time': commit_time,
-			'content': content,
-			'info_key': info_key,
-			'info_version': info_version,
-			'mch_id': self.mch_id,
-			'notes': notes,
-			'public_key': public_key,
-			'sign': sign,
-			'sign_type': self.sign_type,
-			'state': state,
-			'version': self.version
+			"address": address,
+			"commit_time": commit_time,
+			"content": content,
+			"info_key": info_key,
+			"info_version": info_version,
+			"mch_id": self.mch_id,
+			"notes": notes,
+			"public_key": public_key,
+			"sign": sign,
+			"sign_type": self.sign_type,
+			"state": state,
+			"version": self.version
 		}
 
-		mch_sign_string = ''
+		mch_sign_string = ""
 		for k, v in data.items():
-			if k == 'version':
+			if k == "version":
 				mch_sign_string += k + '=' + v
 			else:
 				mch_sign_string += k + '=' + v + '&'
@@ -106,19 +106,19 @@ class Trustsql(object):
 		mch_sign_result = self.signString(self.mch_prvkey, mch_sign_string)
 
 		post_data = {
-			'address': address,
-			'commit_time': commit_time,
-			'content': content,
-			'info_key': info_key,
-			'info_version': info_version,
-			'mch_id': self.mch_id,
-			'notes': notes,
-			'public_key': public_key,
-			'sign': sign,
-			'sign_type': self.sign_type,
-			'state': state,
-			'version': self.version,
-			'mch_sign': mch_sign_result
+			"address": address,
+			"commit_time": commit_time,
+			"content": content,
+			"info_key": info_key,
+			"info_version": info_version,
+			"mch_id": self.mch_id,
+			"notes": notes,
+			"public_key": public_key,
+			"sign": sign,
+			"sign_type": self.sign_type,
+			"state": state,
+			"version": self.version,
+			"mch_sign": mch_sign_result
 		}
 
 
