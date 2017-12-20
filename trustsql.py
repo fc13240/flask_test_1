@@ -80,26 +80,26 @@ class Trustsql(object):
 
 
 		data = {
-			"address": address.encode('utf-8'),
-			"commit_time": commit_time.encode('utf-8'),
-			"content": content.encode('utf-8'),
-			"info_key": info_key.encode('utf-8'),
-			"info_version": info_version.encode('utf-8'),
-			"mch_id": self.mch_id.encode('utf-8'),
-			"notes": notes.encode('utf-8'),
-			"public_key": public_key.encode('utf-8'),
-			"sign": sign.encode('utf-8'),
-			"sign_type": self.sign_type.encode('utf-8'),
-			"state": state.encode('utf-8'),
-			"version": self.version.encode('utf-8')
+			"address": address,
+			"commit_time": commit_time,
+			"content": content,
+			"info_key": info_key,
+			"info_version": info_version,
+			"mch_id": self.mch_id,
+			"notes": notes,
+			"public_key": public_key,
+			"sign": sign,
+			"sign_type": self.sign_type,
+			"state": state,
+			"version": self.version
 		}
 
 		mch_sign_string = ""
 		for k, v in data.items():
 			if k == "version":
-				mch_sign_string += k + '=' + v
+				mch_sign_string += k + '=' + v.encode('utf-8')
 			else:
-				mch_sign_string += k + '=' + v + '&'
+				mch_sign_string += k + '=' + v.encode('utf-8') + '&'
 
 
 		print(mch_sign_string)
