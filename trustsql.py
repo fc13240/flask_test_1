@@ -66,7 +66,7 @@ class Trustsql(object):
 
 
 	def issVerifySign(self, infoKey, infoVersion, state, content, notes, commitTime, pubkey, sign):
-		retcode = self.libc.IssVerifySign(infoKey.encode('utf-8'), c_uint(int(infoVersion)), c_uint(int(state)), json.dumps(json.loads(content)).encode('utf-8'), json.dumps(json.loads(notes)).encode('utf-8'), commitTime.encode('utf-8'), pubkey.encode('utf-8'), sign.encode('utf-8'))
+		retcode = self.libc.IssVerifySign(infoKey.encode('utf-8'), c_uint(int(infoVersion)), c_uint(int(state)), content.encode('utf-8'), notes.encode('utf-8'), commitTime.encode('utf-8'), pubkey.encode('utf-8'), sign.encode('utf-8'))
 		print(retcode)
 
 
