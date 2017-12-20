@@ -85,7 +85,7 @@ $(function() {
 		};
 
 		$.ajax({
-			url: '/trustsql/issSign',
+			url: '/trustsql/issAppend',
 			type: 'POST',
 			dataType: 'json',
 			data: data,

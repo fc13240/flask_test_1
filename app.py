@@ -123,7 +123,7 @@ def register():
             form.prvkey.data = tsql.prvkey
 
             iss_form = IssSignForm()
-            iss_form.pPrvkey.data = tsql.prvkey_key
+            iss_form.pPrvkey.data = prvkey
 
             iss_append_form = IssAppendForm()
 
@@ -180,6 +180,8 @@ def issAppend():
         pContent = request.form['pContent'];
         pNotes = request.form['pNotes'];
         pCommitTime = request.form['pCommitTime'];
+
+        
         pPrvkey = request.form['pPrvkey'];
         pPubkey = request.form['pPubkey'];
 
