@@ -150,6 +150,15 @@ class Trustsql(object):
 
 		mch_sign_result = self.signString(self.mch_prvkey, mch_sign_string)
 
+		post_data = {
+			'address': address,
+			'mch_id': self.mch_id,
+			'sign_type': self.sign_type,
+			'timestamp': str(timestamp),
+			'version': self.version,
+			'mch_sign': mch_sign_result
+		}
+
 		r = requests.post(url, data=post_data)
 		print(r.json())
 		return r.json()
