@@ -175,6 +175,9 @@ class Trustsql(object):
 		}
 
 		r = requests.post(url, data=data)
+		print(r.status_code)
+		print(r.content)
+		print(r.text)
 		print(r.json())
 		return r.json()
 
