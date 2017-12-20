@@ -97,9 +97,9 @@ class Trustsql(object):
 		mch_sign_string = ""
 		for k, v in data.items():
 			if k == "version":
-				mch_sign_string += k + '=' + unicode(v, 'utf-8')
+				mch_sign_string += k + '=' + v
 			else:
-				mch_sign_string += k + '=' + unicode(v, 'utf-8') + '&'
+				mch_sign_string += k + '=' + v + '&'
 
 
 		print(mch_sign_string)
