@@ -58,8 +58,8 @@ class Trustsql(object):
 		pInfoKey = infoKey.encode('utf-8')
 		nInfoVersion = c_uint(int(infoVersion))
 		nState = c_uint(int(state))
-		pContent = content.encode('utf-8')
-		pNotes = notes.encode('utf-8')
+		pContent = json.dumps(json.loads(content)).encode('utf-8')
+		pNotes = json.dumps(json.loads(notes)).encode('utf-8')
 		pCommitTime = commitTime.encode('utf-8')
 		pPrvkey = prvkey.encode('utf-8')
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
@@ -82,11 +82,11 @@ class Trustsql(object):
 		data = {
 			"address": address,
 			"commit_time": commit_time,
-			"content": content,
+			"content": json.dumps(json.loads(content)),
 			"info_key": info_key,
 			"info_version": info_version,
 			"mch_id": self.mch_id,
-			"notes": notes,
+			"notes": json.dumps(json.loads(notes)),
 			"public_key": public_key,
 			"sign": sign,
 			"sign_type": self.sign_type,
