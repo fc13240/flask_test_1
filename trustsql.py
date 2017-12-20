@@ -107,7 +107,7 @@ class Trustsql(object):
 		data['mch_sign'] = mch_sign_result
 
 		print(data)
-		print(json.dumps(data))
+		print(json.loads(data))
 		print(type(json.dumps(data)))
 		post_data = json.loads(json.dumps(data))
 		print('-------------------------')
