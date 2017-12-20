@@ -65,11 +65,18 @@ class Trustsql(object):
 		return str(pSign.value, 'utf-8')
 
 
+	def issVerifySign(self, infoKey, infoVersion, state, content, notes, commitTime, pubkey, sign):
+		retcode = self.libc.IssVerifySign(infoKey.encode('utf-8'), c_uint(int(infoVersion)), c_uint(int(state)), json.dumps(json.loads(content)).encode('utf-8'), json.dumps(json.loads(notes)).encode('utf-8'), commitTime.encode('utf-8'), pubkey.encode('utf-8'), sign.encode('utf-8'))
+		print(retcode)
+
+
 	def iss_append(self, info_key, info_version, state, content, notes, commit_time, prvkey_key, public_key):
 		url = self.host + '/trustsql_iss_append.cgi'
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, self.mch_prvkey)
 		print('sign: ' + sign)
 		# address = self.generateAddrByPubkey(public_key)
+
+		self.issVerifySign(info_key, info_version, state, content, notes, commit_time, self.mch_pubkey, sign)
 
 		print(type(content))
 		print(type(json.loads(content)))
