@@ -54,7 +54,6 @@ class Trustsql(object):
 
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
 		print(content)
-		create_unicode_buffer()
 		pSign = (c_char*98)()
 		pInfoKey = create_unicode_buffer(infoKey.value)
 		nInfoVersion = c_uint(int(infoVersion))
