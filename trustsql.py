@@ -45,6 +45,11 @@ class Trustsql(object):
 
 		return str(pSign.value, 'utf-8')
 
+	def verifySign(self, pPubkey, pStr, pSign):
+		retcode = self.libc.VerifySign(pPubkey.encode('utf-8'), pStr.encode('utf-8'), c_int(len(pStr)), pSign.encode('utf-8'))
+
+		print(retcode)
+
 
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
 		pSign = (c_char*98)()
@@ -56,18 +61,17 @@ class Trustsql(object):
 		pCommitTime = commitTime.encode('utf-8')
 		pPrvkey = prvkey.encode('utf-8')
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
-		print(pContent)
+
 		return str(pSign.value, 'utf-8')
 
 
 	def iss_append(self, info_key, info_version, state, content, notes, commit_time, prvkey_key, public_key):
-		print(content)
-		print(notes)
 		url = self.host + '/trustsql_iss_append.cgi'
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, self.mch_prvkey)
 		print('sign: ' + sign)
 		# address = self.generateAddrByPubkey(public_key)
-
+		self.verifySign(self.mch_pubkey, 'Tencent TrustSQL', self.mch_sign)
+		
 		print(type(content))
 		print(type(json.loads(content)))
 
