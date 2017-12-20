@@ -108,6 +108,7 @@ class Trustsql(object):
 
 		print(data)
 		print(json.dumps(data))
+		print(type(json.dumps(data)))
 		post_data = json.loads(json.dumps(data))
 		print('-------------------------')
 		print(post_data)
