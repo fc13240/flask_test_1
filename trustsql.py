@@ -54,15 +54,15 @@ class Trustsql(object):
 
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
 		print(content)
-		
+		create_unicode_buffer()
 		pSign = (c_char*98)()
-		pInfoKey = create_unicode_buffer(infoKey)
+		pInfoKey = create_unicode_buffer(infoKey.value)
 		nInfoVersion = c_uint(int(infoVersion))
 		nState = c_uint(int(state))
-		pContent = create_unicode_buffer(content)
-		pNotes = create_unicode_buffer(notes)
-		pCommitTime = create_unicode_buffer(commitTime)
-		pPrvkey = create_unicode_buffer(prvkey)
+		pContent = create_unicode_buffer(content.value)
+		pNotes = create_unicode_buffer(notes.value)
+		pCommitTime = create_unicode_buffer(commitTime.value)
+		pPrvkey = create_unicode_buffer(prvkey.value)
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
 
 		return str(pSign.value, 'utf-8')
