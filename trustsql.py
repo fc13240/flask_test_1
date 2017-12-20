@@ -55,8 +55,8 @@ class Trustsql(object):
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
 		print(content)
 
-		ppInfoKey = create_string_buffer(len(str(infoKey)) + 1)
-		ppInfoKey.value = str(infoKey)
+		ppInfoKey = create_string_buffer(4)
+		ppInfoKey.value = "big"
 
 		ppContent = create_string_buffer(len(json.dumps(json.loads(content))) + 1)
 		ppContent.value = json.dumps(json.loads(content))
