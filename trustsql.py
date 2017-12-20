@@ -167,7 +167,7 @@ class Trustsql(object):
 		print(user_id)
 		print(public_key)
 		print(user_fullName)
-		url = self.host + '/api/user_cert/register'
+		url = 'https://open.trustsql.qq.com' + '/api/user_cert/register'
 		data = {
 			'user_id': user_id,
 			'public_key': public_key,
