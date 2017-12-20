@@ -172,10 +172,9 @@ def issSign():
         return jsonify({'sign': sign})
 
 @app.route('/trustsql/issAppend', methods=['GET', 'POST'])
-@login_manager.user_loader
-def issAppend(id):
+def issAppend():
     if request.method == 'POST':
-        tsql = TrustSQL.query.filter_by(user_id=int(id)).first_or_404()
+        tsql = TrustSQL.query.filter_by(user_id=current_user.id).first_or_404()
 
         pInfoKey = request.form['pInfoKey'];
         nInfoVersion = request.form['nInfoVersion'];
