@@ -61,8 +61,7 @@ class Trustsql(object):
 		url = self.host + '/trustsql_iss_append.cgi'
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
 		address = self.generateAddrByPubkey(public_key)
-		print(address)
-		print(sign)
+
 		data = {
 			'version': self.version,
 			'sign_type': self.sign_type,
@@ -79,8 +78,8 @@ class Trustsql(object):
 		};
 
 		r = requests.post(url, data=data)
-		print(r)
-		return r
+		print(r.json())
+		return r.json()
 
 
 
