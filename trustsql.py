@@ -87,15 +87,15 @@ class Trustsql(object):
 		data = {
 			'address': address,
 			'commit_time': commit_time,
-			'content': json.loads(content),
+			'content': content,
 			'info_key': info_key,
-			'info_version': int(info_version),
+			'info_version': info_version,
 			'mch_id': self.mch_id,
-			'notes': json.loads(notes),
+			'notes': notes,
 			'public_key': public_key,
 			'sign': sign,
 			'sign_type': self.sign_type,
-			'state': int(state),
+			'state': state,
 			'version': self.version
 		}
 
