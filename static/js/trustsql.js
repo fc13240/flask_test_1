@@ -129,8 +129,8 @@ $(function() {
 		})
 		.done(function(data) {
 			console.log("success");
-			console.log(data);
-			$('#issQueryResult').text(data);
+			console.log(data['infos']);
+			$('#issQueryResult').text(JSON.stringify(data['infos']));
 		})
 		.fail(function() {
 			console.log("error");
