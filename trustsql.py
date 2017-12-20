@@ -95,8 +95,7 @@ class Trustsql(object):
 			'notes': json.loads(notes),
 			'commit_time': commit_time,
 			'address': address,
-			'public_key': public_key,
-			'sign': sign
+			'public_key': public_key
 		}
 
 		print(data)
