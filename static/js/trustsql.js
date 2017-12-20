@@ -89,8 +89,8 @@ $(function() {
 			'pInfoKey': pInfoKey,
 			'nInfoVersion': nInfoVersion,
 			'nState': nState,
-			'pContent': JSON.stringify(pContent),
-			'pNotes': JSON.stringify(pNotes),
+			'pContent': "{\"content\":\"test\"}",
+			'pNotes': "{\"notes\":\"test\"}",
 			'pCommitTime': pCommitTime
 		};
 
