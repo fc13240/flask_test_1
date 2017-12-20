@@ -77,7 +77,7 @@ class Trustsql(object):
 			'notes': notes,
 			'commit_time': commit_time,
 			'address': self.mch_address,
-			'public_key': public_key,
+			'public_key': self.mch_pubkey,
 			'sign': 'sign'
 		};
 
