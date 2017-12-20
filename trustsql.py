@@ -70,8 +70,7 @@ class Trustsql(object):
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, self.mch_prvkey)
 		print('sign: ' + sign)
 		# address = self.generateAddrByPubkey(public_key)
-		self.verifySign(self.mch_pubkey, 'Tencent TrustSQL', self.mch_sign)
-		
+
 		print(type(content))
 		print(type(json.loads(content)))
 
@@ -88,7 +87,7 @@ class Trustsql(object):
 			'commit_time': commit_time,
 			'address': self.mch_address,
 			'public_key': self.mch_pubkey,
-			'sign': 'sign'
+			'sign': sign
 		};
 
 		r = requests.post(url, data=data)
