@@ -66,6 +66,7 @@ class Trustsql(object):
 		print(notes)
 		url = self.host + '/trustsql_iss_append.cgi'
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, self.mch_prvkey)
+		print('sign: ' + sign)
 		# address = self.generateAddrByPubkey(public_key)
 
 		data = {
