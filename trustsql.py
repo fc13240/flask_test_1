@@ -58,8 +58,8 @@ class Trustsql(object):
 		pInfoKey = create_unicode_buffer(infoKey).value
 		nInfoVersion = c_uint(int(infoVersion))
 		nState = c_uint(int(state))
-		pContent = create_unicode_buffer(content).value
-		pNotes = create_unicode_buffer(notes).value
+		pContent = create_unicode_buffer(json.dumps(json.loads(content))).value
+		pNotes = create_unicode_buffer(json.dumps(json.loads(notes))).value
 		pCommitTime = create_unicode_buffer(commitTime).value
 		pPrvkey = create_unicode_buffer(prvkey).value
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
