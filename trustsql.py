@@ -56,11 +56,14 @@ class Trustsql(object):
 		pCommitTime = commitTime.encode('utf-8')
 		pPrvkey = prvkey.encode('utf-8')
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
-
+		print('content: ' + pContent)
+		print('notes: ' + pNotes)
 		return str(pSign.value, 'utf-8')
 
 
 	def iss_append(self, info_key, info_version, state, content, notes, commit_time, prvkey_key, public_key):
+		print(content)
+		print(notes)
 		url = self.host + '/trustsql_iss_append.cgi'
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, self.mch_prvkey)
 		# address = self.generateAddrByPubkey(public_key)
