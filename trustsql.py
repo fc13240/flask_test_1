@@ -90,7 +90,7 @@ class Trustsql(object):
 			'sign': sign
 		}
 
-		print('post: ' + data)
+		print(data)
 
 		r = requests.post(url, data=data)
 		print(r.json())
