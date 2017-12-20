@@ -68,7 +68,7 @@ class Trustsql(object):
 		# address = self.generateAddrByPubkey(public_key)
 
 		print(type(content))
-		print(type(json.loads(content)))
+		print(type(json.dumps(content)))
 
 		data = {
 			'version': self.version,
