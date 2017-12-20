@@ -12,6 +12,9 @@ class Trustsql(object):
 		self.sign_type = 'ECDSA'
 		self.mch_id = 'gb8061f6b549ddc4f'
 		self.mch_sign = 'MEQCIHTM2q87F9PTUeSdZzNAN39eLwBaDKuPPnEdcHzizpTCAiBHn8pb+zasMGvcF/6qbJrG+1J1+bC+ilfnkZqwZmECwg=='
+		self.mch_prvkey = 'oe0xdfkch4a1VXaGH4VUmS+taXlj3gyvqUfbPl6tQ00='
+		self.mch_pubkey = 'BGCuRRVFPK8XGU6EVDxvALjKnjm/uURkZv9jV7q3aJYQqANoOHWhvd4HyE4e5ju74DXI4ZopcvoJUn/E52hujPo='
+		self.mch_address = '15kcSqCvrpEbrAgqDjPuW5mdSHULzvYNUD'
 
 	def generatePairkey(self):
 		pPrvkey = (c_char*45)()
@@ -59,8 +62,8 @@ class Trustsql(object):
 
 	def iss_append(self, info_key, info_version, state, content, notes, commit_time, prvkey_key, public_key):
 		url = self.host + '/trustsql_iss_append.cgi'
-		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
-		address = self.generateAddrByPubkey(public_key)
+		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, self.mch_prvkey)
+		# address = self.generateAddrByPubkey(public_key)
 
 		data = {
 			'version': self.version,
@@ -73,7 +76,7 @@ class Trustsql(object):
 			'content': content,
 			'notes': notes,
 			'commit_time': commit_time,
-			'address': address,
+			'address': self.mch_address,
 			'public_key': public_key,
 			'sign': 'sign'
 		};

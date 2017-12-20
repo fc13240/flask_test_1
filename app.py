@@ -185,9 +185,6 @@ def issAppend():
         pPrvkey = tsql.prvkey;
         pPubkey = tsql.pubkey;
 
-        print(pPrvkey)
-        print(pPubkey)
-
         r = trustsql.iss_append(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pPubkey)
         return r;
 
