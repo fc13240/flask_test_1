@@ -69,8 +69,7 @@ class Trustsql(object):
 
 		print(type(content))
 		print(type(json.loads(content)))
-		print(type(json.loads(json.loads(content))))
-		print(json.loads(json.loads(content)))
+		
 		data = {
 			'version': self.version,
 			'sign_type': self.sign_type,
@@ -79,8 +78,8 @@ class Trustsql(object):
 			'info_key': info_key,
 			'info_version': info_version,
 			'state': state,
-			'content': json.loads(json.loads(content)),
-			'notes': json.loads(json.loads(notes)),
+			'content': json.loads(content),
+			'notes': json.loads(notes),
 			'commit_time': commit_time,
 			'address': self.mch_address,
 			'public_key': self.mch_pubkey,
