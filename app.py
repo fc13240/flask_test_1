@@ -195,7 +195,7 @@ def issQuery():
         r = trustsql.iss_query('', '', '', '', '', '', '', '', '', '', '', '')
         print(r)
         if r['retcode'] == 0:
-            return r
+            return jsonify(r)
         else:
             flash(r['retmsg'])
 
