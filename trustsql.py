@@ -78,7 +78,7 @@ class Trustsql(object):
 		pPrvkey = prvkey.encode()
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
 
-		return str(pSign.value)
+		return str(pSign.value, 'utf-8')
 
 
 	def issVerifySign(self, infoKey, infoVersion, state, content, notes, commitTime, pubkey, sign):
