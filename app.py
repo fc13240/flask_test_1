@@ -191,10 +191,10 @@ def issAppend():
 @app.route('/trustsql/issQuery', methods=['GET', 'POST'])
 def issQuery():
     if request.method == 'POST':
-        
+        tsql = TrustSQL.query.filter_by(user_id=current_user.id).first_or_404()
         pContent = request.form['pContent'];
 
-        r = trustsql.iss_query('', '', '', pContent, '', '', '', '', '', '', '', '')
+        r = trustsql.iss_query('', '', '', pContent, '', '', '', '', '', '', '', tsql.pubkey)
         print(r['retcode'])
         if int(r['retcode']) == 0:
             print(r['retmsg'])

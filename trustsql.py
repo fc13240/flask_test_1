@@ -146,7 +146,7 @@ class Trustsql(object):
 
 	def iss_query(self, info_key, info_version, state, content, notes, range, address, t_hash, page_no, page_limit, prvkey_key, public_key):
 		url = self.host + '/trustsql_iss_query.cgi'
-		address = self.generateAddrByPubkey(self.mch_pubkey)
+		address = self.generateAddrByPubkey(public_key)
 
 		timestamp = int(time.time())
 		data = {
