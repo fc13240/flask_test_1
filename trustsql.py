@@ -112,9 +112,9 @@ class Trustsql(object):
 		for k, v in data.items():
 			if k == "version":
 				mch_sign_string += k + '=' + v
-			elif: k == "info_version":
+			elif k == "info_version":
 				mch_sign_string += k + '=' + str(v) + '&'
-			elif: k == "state":
+			elif k == "state":
 				mch_sign_string += k + '=' + str(v) + '&'
 			else:
 				mch_sign_string += k + '=' + v + '&'
