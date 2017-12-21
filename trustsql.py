@@ -108,7 +108,11 @@ class Trustsql(object):
 		ppCommitTime.value = commit_time.encode()
 		commit_time = str(ppCommitTime, 'utf-8')
 
-
+		print('-----------------------')
+		print(ppContent)
+		print(ppContent.value)
+		print('-----------------------')
+		print(content)
 
 		
 		address = self.generateAddrByPubkey(public_key)
