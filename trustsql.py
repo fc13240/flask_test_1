@@ -37,6 +37,12 @@ class Trustsql(object):
 
 		return str(pAddr.value, 'utf-8')
 
+	def generateAddrByPrvkey(self, pPrvkey):
+		pAddr = (c_char*35)()
+		retcode = self.libc.GenerateAddrByPrvkey(c_char_p(pPrvkey.encode()), pAddr)
+
+		return str(pAddr.value, 'utf-8')
+
 
 	def signString(self, prvkey, p_Str):
 		pSign = (c_char*98)()
@@ -89,7 +95,7 @@ class Trustsql(object):
 
 		self.issVerifySign(info_key, info_version, state, content, notes, commit_time, public_key, sign)
 
-		address = self.generateAddrByPubkey(self.mch_pubkey)
+		address = self.generateAddrByPrvkey(prvkey_key)
 
 		data = {
 			'address': address,
