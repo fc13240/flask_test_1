@@ -89,8 +89,8 @@ class Trustsql(object):
 	def iss_append(self, info_key, info_version, state, content, notes, commit_time, prvkey_key, public_key):
 		url = self.host + '/trustsql_iss_append.cgi'
 
-		ppInfoKey = create_string_buffer(len(infoKey)+1)
-		ppInfoKey.value = infoKey.encode()
+		ppInfoKey = create_string_buffer(len(info_key)+1)
+		ppInfoKey.value = info_key.encode()
 		info_key = str(ppInfoKey, 'utf-8')
 
 		ppContent = create_string_buffer(len(json.dumps(json.loads(content))) + 1)
@@ -101,8 +101,8 @@ class Trustsql(object):
 		ppNotes.value = json.dumps(json.loads(notes)).encode()
 		notes = str(ppNotes, 'utf-8')
 
-		ppCommitTime = create_string_buffer(len(commitTime) + 1)
-		ppCommitTime.value = commitTime.encode()
+		ppCommitTime = create_string_buffer(len(commit_time) + 1)
+		ppCommitTime.value = commit_time.encode()
 		commit_time = str(ppCommitTime, 'utf-8')
 
 
