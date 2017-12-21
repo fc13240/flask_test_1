@@ -66,6 +66,7 @@ class Trustsql(object):
 
 		ppCommitTime = create_string_buffer(len(commitTime) + 1)
 		ppCommitTime.value = commitTime.encode('utf-8')
+		print(ppCommitTime.raw)
 
 		pSign = (c_char*98)()
 		pInfoKey = ppInfoKey
