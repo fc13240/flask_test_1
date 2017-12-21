@@ -99,11 +99,11 @@ class Trustsql(object):
 		data = {
 			'address': address,
 			'commit_time': commit_time,
-			'content': json.dumps(content),
+			'content': content,
 			'info_key': info_key,
 			'info_version': info_version,
 			'mch_id': self.mch_id,
-			'notes': json.dumps(notes),
+			'notes': notes,
 			'public_key': public_key,
 			'sign': sign,
 			'sign_type': self.sign_type,
@@ -111,27 +111,14 @@ class Trustsql(object):
 			'version': self.version
 		}
 
-		content_string = ""
-		for k, v in content:
-			content_string += "\"{}\":\"{}\"".format(k, v)
-
-		notes_string = ""
-		for k, v in notes:
-			notes_string += "\"{}\":\"{}\"".format(k, v)
-
-		print('------content string----------')
-		print(content_string)
-		print('------note string----------')
-		print(notes_string)
-
 		mch_sign_string = ""
 		for k, v in data.items():
 			if k == "version":
 				mch_sign_string += k + '=' + v
-			elif k == "content":
-				mch_sign_string += k + '=' + content_string + '&'
-			elif k == "notes":
-				mch_sign_string += k + '=' + notes_string + '&'
+			# elif k == "content":
+			# 	mch_sign_string += k + '=' + content_string + '&'
+			# elif k == "notes":
+			# 	mch_sign_string += k + '=' + notes_string + '&'
 			else:
 				mch_sign_string += k + '=' + v + '&'
 
@@ -140,8 +127,14 @@ class Trustsql(object):
 		mch_sign_result = self.signString(self.mch_prvkey, mch_sign_string)
 		data['mch_sign'] = mch_sign_result
 
+		print('----------json.dumps before----------')
+		print(data)
+		data['content'] = json.dumps(content)
+		data['notes'] = json.dumps(notes)
+		print('----------json.dumps after----------')
 		print(data)
 		print(type(data))
+
 
 		r = requests.post(url, data=data)
 		print(r.json())
