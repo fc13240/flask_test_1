@@ -56,6 +56,7 @@ class Trustsql(object):
 		print(content)
 
 		ppInfoKey = create_string_buffer(4)
+		print(ppInfoKey)
 		ppInfoKey.value = "big"
 
 		ppContent = create_string_buffer(len(json.dumps(json.loads(content))) + 1)
