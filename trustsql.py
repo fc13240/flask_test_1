@@ -93,9 +93,6 @@ class Trustsql(object):
 
 		address = self.generateAddrByPubkey(public_key)
 
-		print(type(content))
-
-
 		data = {
 			'address': address,
 			'commit_time': commit_time,
@@ -129,6 +126,9 @@ class Trustsql(object):
 
 		print('----------json.dumps before----------')
 		print(data)
+		print(type(content))
+		print(type(eval(content)))
+		print(type(json.dumps(eval(content))))
 		data['content'] = json.dumps(eval(content))
 		data['notes'] = json.dumps(eval(notes))
 		print('----------json.dumps after----------')
