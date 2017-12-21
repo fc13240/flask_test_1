@@ -53,28 +53,26 @@ class Trustsql(object):
 
 
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
-		print(content)
+		# ppInfoKey = create_string_buffer(len(infoKey)+1)
+		# ppInfoKey.value = infoKey.encode()
 
-		ppInfoKey = create_string_buffer(len(infoKey)+1)
-		ppInfoKey.value = infoKey.encode()
+		# ppContent = create_string_buffer(len(json.dumps(eval(content))) + 1)
+		# ppContent.value = json.dumps(eval(content)).encode()
 
-		ppContent = create_string_buffer(len(json.dumps(eval(content))) + 1)
-		ppContent.value = json.dumps(eval(content)).encode()
+		# ppNotes = create_string_buffer(len(json.dumps(eval(notes))) + 1)
+		# ppNotes.value = json.dumps(eval(notes)).encode()
 
-		ppNotes = create_string_buffer(len(json.dumps(eval(notes))) + 1)
-		ppNotes.value = json.dumps(eval(notes)).encode()
-
-		ppCommitTime = create_string_buffer(len(commitTime) + 1)
-		ppCommitTime.value = commitTime.encode()
-		print(ppCommitTime.raw)
+		# ppCommitTime = create_string_buffer(len(commitTime) + 1)
+		# ppCommitTime.value = commitTime.encode()
+		# print(ppCommitTime.raw)
 
 		pSign = (c_char*98)()
-		pInfoKey = ppInfoKey
+		pInfoKey = infoKey.encode()
 		nInfoVersion = c_uint(int(infoVersion))
 		nState = c_uint(int(state))
 		pContent = content.encode()
 		pNotes = notes.encode()
-		pCommitTime = ppCommitTime
+		pCommitTime = commitTime.encode()
 		pPrvkey = prvkey.encode()
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
 
@@ -112,10 +110,6 @@ class Trustsql(object):
 		for k, v in data.items():
 			if k == "version":
 				mch_sign_string += k + '=' + v
-			# elif k == "content":
-			# 	mch_sign_string += k + '=' + content_string + '&'
-			# elif k == "notes":
-			# 	mch_sign_string += k + '=' + notes_string + '&'
 			else:
 				mch_sign_string += k + '=' + v + '&'
 
