@@ -94,11 +94,11 @@ class Trustsql(object):
 		data = {
 			'address': address,
 			'commit_time': commit_time,
-			'content': content,
+			'content': json.dumps(eval(content)),
 			'info_key': info_key,
 			'info_version': info_version,
 			'mch_id': self.mch_id,
-			'notes': notes,
+			'notes': json.dumps(eval(notes)),
 			'public_key': public_key,
 			'sign': sign,
 			'sign_type': self.sign_type,
@@ -122,8 +122,8 @@ class Trustsql(object):
 		print(data)
 		print(type(content))
 		print(type(eval(content)))
-		data['content'] = json.dumps(eval(content))
-		data['notes'] = json.dumps(eval(notes))
+		# data['content'] = json.dumps(eval(content))
+		# data['notes'] = json.dumps(eval(notes))
 		print('----------json.dumps after----------')
 		print(data)
 		print(type(data))
