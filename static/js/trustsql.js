@@ -119,8 +119,7 @@ $(function() {
 		console.log('start issQuery');
 
 		var pContent = {
-			"id": "111111",
-			"author": "yuham"
+			"conent": "test"
 		};
 
 		var data = {
