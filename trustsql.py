@@ -55,16 +55,16 @@ class Trustsql(object):
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
 		print(content)
 
-		ppInfoKey = create_string_buffer(c_char*(len(infoKey)+1))
+		ppInfoKey = create_string_buffer(len(infoKey)+1)
 		ppInfoKey.value = infoKey.encode('utf-8')
 
-		ppContent = create_string_buffer(c_char*(len(json.dumps(json.loads(content))) + 1))
+		ppContent = create_string_buffer(len(json.dumps(json.loads(content))) + 1)
 		ppContent.value = json.dumps(json.loads(content)).encode('utf-8')
 
-		ppNotes = create_string_buffer(c_char*(len(json.dumps(json.loads(notes))) + 1))
+		ppNotes = create_string_buffer(len(json.dumps(json.loads(notes))) + 1)
 		ppNotes.value = json.dumps(json.loads(notes)).encode('utf-8')
 
-		ppCommitTime = create_string_buffer(c_char*(len(commitTime) + 1))
+		ppCommitTime = create_string_buffer(len(commitTime) + 1)
 		ppCommitTime.value = commitTime.encode('utf-8')
 
 		pSign = (c_char*98)()
