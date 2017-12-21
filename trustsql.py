@@ -58,11 +58,11 @@ class Trustsql(object):
 		ppInfoKey = create_string_buffer(len(infoKey)+1)
 		ppInfoKey.value = infoKey.encode()
 
-		ppContent = create_string_buffer(len(json.dumps(content)) + 1)
-		ppContent.value = json.dumps(content).encode()
+		ppContent = create_string_buffer(len(json.dumps(eval(content))) + 1)
+		ppContent.value = json.dumps(eval(content)).encode()
 
-		ppNotes = create_string_buffer(len(json.dumps(notes)) + 1)
-		ppNotes.value = json.dumps(notes).encode()
+		ppNotes = create_string_buffer(len(json.dumps(eval(notes))) + 1)
+		ppNotes.value = json.dumps(eval(notes)).encode()
 
 		ppCommitTime = create_string_buffer(len(commitTime) + 1)
 		ppCommitTime.value = commitTime.encode()
@@ -130,8 +130,8 @@ class Trustsql(object):
 		print(type(eval(content)))
 		print(type(json.dumps(content)))
 		print(type(json.dumps(eval(content))))
-		data['content'] = json.dumps(eval(content))
-		data['notes'] = json.dumps(eval(notes))
+		data['content'] = eval(content)
+		data['notes'] = eval(notes)
 		print('----------json.dumps after----------')
 		print(data)
 		print(type(data))
