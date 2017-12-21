@@ -128,6 +128,7 @@ class Trustsql(object):
 		print(data)
 		print(type(content))
 		print(type(eval(content)))
+		print(type(json.dumps(content)))
 		print(type(json.dumps(eval(content))))
 		data['content'] = json.dumps(eval(content))
 		data['notes'] = json.dumps(eval(notes))
