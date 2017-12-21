@@ -111,14 +111,27 @@ class Trustsql(object):
 			'version': self.version
 		}
 
+		content_string = ""
+		for k, v in content:
+			content_string += "\"{}\":\"{}\"".format(k, v)
+
+		notes_string = ""
+		for k, v in notes:
+			notes_string += "\"{}\":\"{}\"".format(k, v)
+
+		print('------content string----------')
+		print(content_string)
+		print('------note string----------')
+		print(notes_string)
+
 		mch_sign_string = ""
 		for k, v in data.items():
 			if k == "version":
 				mch_sign_string += k + '=' + v
-			# elif k == "content":
-			# 	mch_sign_string += k + '=' + json.dumps(v) + '&'
-			# elif k == "notes":
-			# 	mch_sign_string += k + '=' + json.dumps(v) + '&'
+			elif k == "content":
+				mch_sign_string += k + '=' + content_string + '&'
+			elif k == "notes":
+				mch_sign_string += k + '=' + notes_string + '&'
 			else:
 				mch_sign_string += k + '=' + v + '&'
 
