@@ -72,8 +72,8 @@ class Trustsql(object):
 		pInfoKey = ppInfoKey
 		nInfoVersion = c_uint(int(infoVersion))
 		nState = c_uint(int(state))
-		pContent = json.dumps(content).encode()
-		pNotes = json.dumps(notes).encode()
+		pContent = content.encode()
+		pNotes = notes.encode()
 		pCommitTime = ppCommitTime
 		pPrvkey = prvkey.encode()
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
