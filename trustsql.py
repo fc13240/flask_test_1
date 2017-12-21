@@ -53,27 +53,37 @@ class Trustsql(object):
 
 
 	def issSign(self, infoKey, infoVersion, state, content, notes, commitTime, prvkey):
-		ppInfoKey = create_string_buffer(len(infoKey)+1)
-		ppInfoKey.value = infoKey.encode()
+		# ppInfoKey = create_string_buffer(len(infoKey)+1)
+		# ppInfoKey.value = infoKey.encode()
 
-		ppContent = create_string_buffer(len(json.dumps(eval(content))) + 1)
-		ppContent.value = json.dumps(eval(content)).encode()
+		# ppContent = create_string_buffer(len(json.dumps(eval(content))) + 1)
+		# ppContent.value = json.dumps(eval(content)).encode()
 
-		ppNotes = create_string_buffer(len(json.dumps(eval(notes))) + 1)
-		ppNotes.value = json.dumps(eval(notes)).encode()
+		# ppNotes = create_string_buffer(len(json.dumps(eval(notes))) + 1)
+		# ppNotes.value = json.dumps(eval(notes)).encode()
 
-		ppCommitTime = create_string_buffer(len(commitTime) + 1)
-		ppCommitTime.value = commitTime.encode()
-		print(ppCommitTime.raw)
+		# ppCommitTime = create_string_buffer(len(commitTime) + 1)
+		# ppCommitTime.value = commitTime.encode()
+		# print(ppCommitTime.raw)
+
+		# pSign = (c_char*98)()
+		# pInfoKey = ppInfoKey
+		# nInfoVersion = c_uint(int(infoVersion))
+		# nState = c_uint(int(state))
+		# pContent = ppContent
+		# pNotes = ppNotes
+		# pCommitTime = ppCommitTime
+		# pPrvkey = prvkey.encode()
 
 		pSign = (c_char*98)()
-		pInfoKey = ppInfoKey
+		pInfoKey = (c_char*len(infoKey))(infoKey.encode())
 		nInfoVersion = c_uint(int(infoVersion))
 		nState = c_uint(int(state))
-		pContent = ppContent
-		pNotes = ppNotes
-		pCommitTime = ppCommitTime
-		pPrvkey = prvkey.encode()
+		pContent = (c_char*len(json.dumps(eval(content))))(json.dumps(eval(content)).encode())
+		pNotes = (c_char*len(json.dumps(eval(notes))))(json.dumps(eval(notes)).encode())
+		pCommitTime = (c_char*len(commitTime))(commitTime.encode())
+		pPrvkey = (c_char*len(prvkey))(prvkey.encode())
+
 		retcode = self.libc.IssSign(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pSign)
 
 		return str(pSign.value, 'utf-8')
