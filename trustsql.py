@@ -58,11 +58,11 @@ class Trustsql(object):
 		ppInfoKey = create_string_buffer(len(infoKey)+1)
 		ppInfoKey.value = infoKey.encode()
 
-		ppContent = create_string_buffer(len(json.dumps(json.loads(content))) + 1)
-		ppContent.value = json.dumps(json.loads(content)).encode()
+		ppContent = create_string_buffer(len(json.dumps(content)) + 1)
+		ppContent.value = json.dumps(content).encode()
 
-		ppNotes = create_string_buffer(len(json.dumps(json.loads(notes))) + 1)
-		ppNotes.value = json.dumps(json.loads(notes)).encode()
+		ppNotes = create_string_buffer(len(json.dumps(notes)) + 1)
+		ppNotes.value = json.dumps(notes).encode()
 
 		ppCommitTime = create_string_buffer(len(commitTime) + 1)
 		ppCommitTime.value = commitTime.encode()
@@ -97,11 +97,11 @@ class Trustsql(object):
 		data = {
 			"address": address,
 			"commit_time": commit_time,
-			"content": json.loads(content),
+			"content": json.dumps(content),
 			"info_key": info_key,
 			"info_version": info_version,
 			"mch_id": self.mch_id,
-			"notes": json.loads(notes),
+			"notes": json.dumps(notes),
 			"public_key": public_key,
 			"sign": sign,
 			"sign_type": self.sign_type,
@@ -113,10 +113,10 @@ class Trustsql(object):
 		for k, v in data.items():
 			if k == "version":
 				mch_sign_string += k + '=' + v
-			elif k == "content":
-				mch_sign_string += k + '=' + json.dumps(v) + '&'
-			elif k == "notes":
-				mch_sign_string += k + '=' + json.dumps(v) + '&'
+			# elif k == "content":
+			# 	mch_sign_string += k + '=' + json.dumps(v) + '&'
+			# elif k == "notes":
+			# 	mch_sign_string += k + '=' + json.dumps(v) + '&'
 			else:
 				mch_sign_string += k + '=' + v + '&'
 
