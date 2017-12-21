@@ -118,7 +118,13 @@ $(function() {
 	$('#trustsql_issQuery').click(function() {
 		console.log('start issQuery');
 
+		var pContent = {
+			"id": "111111",
+			"author": "yuham"
+		};
+
 		var data = {
+			'pContent': JSON.stringify(pContent)
 		};
 
 		$.ajax({

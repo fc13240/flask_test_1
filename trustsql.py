@@ -151,6 +151,7 @@ class Trustsql(object):
 		timestamp = int(time.time())
 		data = {
 			'address': address,
+			'content': json.dumps(eval(content)),
 			'mch_id': self.mch_id,
 			'sign_type': self.sign_type,
 			'timestamp': str(timestamp),
@@ -165,17 +166,9 @@ class Trustsql(object):
 				mch_sign_string += k + '=' + v + '&'
 
 		mch_sign_result = self.signString(self.mch_prvkey, mch_sign_string)
+		data['mch_sign'] = mch_sign_result
 
-		post_data = {
-			'address': address,
-			'mch_id': self.mch_id,
-			'sign_type': self.sign_type,
-			'timestamp': str(timestamp),
-			'version': self.version,
-			'mch_sign': mch_sign_result
-		}
-
-		r = requests.post(url, data=post_data)
+		r = requests.post(url, data=data)
 		print(r.json())
 		return r.json()
 

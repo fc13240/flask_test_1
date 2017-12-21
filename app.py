@@ -192,7 +192,9 @@ def issAppend():
 def issQuery():
     if request.method == 'POST':
         
-        r = trustsql.iss_query('', '', '', '', '', '', '', '', '', '', '', '')
+        pContent = request.form['pContent'];
+
+        r = trustsql.iss_query('', '', '', pContent, '', '', '', '', '', '', '', '')
         print(r['retcode'])
         if int(r['retcode']) == 0:
             print(r['retmsg'])
