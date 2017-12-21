@@ -108,7 +108,7 @@ class Trustsql(object):
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
 		print('sign: ' + sign)
 
-		self.issVerifySign(info_key, info_version, state, content, notes, commit_time, public_key)
+		self.issVerifySign(info_key, info_version, state, content, notes, commit_time, public_key, sign)
 
 		address = self.generateAddrByPubkey(public_key)
 
