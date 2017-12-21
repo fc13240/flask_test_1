@@ -88,44 +88,20 @@ class Trustsql(object):
 
 	def iss_append(self, info_key, info_version, state, content, notes, commit_time, prvkey_key, public_key):
 		url = self.host + '/trustsql_iss_append.cgi'
-
 		sign = self.issSign(info_key, info_version, state, content, notes, commit_time, prvkey_key)
 		print('sign: ' + sign)
 
-		ppInfoKey = create_string_buffer(len(info_key)+1)
-		ppInfoKey.value = info_key.encode()
-		info_key = str(ppInfoKey, 'utf-8')
-
-		ppContent = create_string_buffer(len(json.dumps(json.loads(content))) + 1)
-		ppContent.value = json.dumps(json.loads(content)).encode()
-		content = str(ppContent, 'utf-8')
-
-		ppNotes = create_string_buffer(len(json.dumps(json.loads(notes))) + 1)
-		ppNotes.value = json.dumps(json.loads(notes)).encode()
-		notes = str(ppNotes, 'utf-8')
-
-		ppCommitTime = create_string_buffer(len(commit_time) + 1)
-		ppCommitTime.value = commit_time.encode()
-		commit_time = str(ppCommitTime, 'utf-8')
-
-		print('-----------------------')
-		print(ppContent)
-		print(ppContent.value)
-		print('-----------------------')
-		print(content)
-
-		
 		address = self.generateAddrByPubkey(public_key)
 
 
 		data = {
 			"address": address,
 			"commit_time": commit_time,
-			"content": content,
+			"content": json.dumps(json.loads(content)),
 			"info_key": info_key,
 			"info_version": info_version,
 			"mch_id": self.mch_id,
-			"notes": notes,
+			"notes": json.dumps(json.loads(notes)),
 			"public_key": public_key,
 			"sign": sign,
 			"sign_type": self.sign_type,
@@ -137,6 +113,10 @@ class Trustsql(object):
 		for k, v in data.items():
 			if k == "version":
 				mch_sign_string += k + '=' + v
+			elif k == "content":
+				mch_sign_string += k + '=' + json.loads(v) + '&'
+			elif k == "notes":
+				mch_sign_string += k + '=' + json.loads(v) + '&'
 			else:
 				mch_sign_string += k + '=' + v + '&'
 
