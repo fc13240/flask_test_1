@@ -96,11 +96,11 @@ class Trustsql(object):
 		data = {
 			"address": address,
 			"commit_time": commit_time,
-			"content": json.dumps(json.loads(content)),
+			"content": json.loads(content),
 			"info_key": info_key,
 			"info_version": int(info_version),
 			"mch_id": self.mch_id,
-			"notes": json.dumps(json.loads(notes)),
+			"notes": json.loads(notes),
 			"public_key": public_key,
 			"sign": sign,
 			"sign_type": self.sign_type,
@@ -116,6 +116,10 @@ class Trustsql(object):
 				mch_sign_string += k + '=' + str(v) + '&'
 			elif k == "state":
 				mch_sign_string += k + '=' + str(v) + '&'
+			elif k == "content":
+				mch_sign_string += k + '=' + json.dumps(v) + '&'
+			elif k == "notes":
+				mch_sign_string += k + '=' + json.dumps(v) + '&'
 			else:
 				mch_sign_string += k + '=' + v + '&'
 
