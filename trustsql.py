@@ -93,20 +93,22 @@ class Trustsql(object):
 
 		address = self.generateAddrByPubkey(public_key)
 
+		print(type(content))
+
 
 		data = {
-			"address": address,
-			"commit_time": commit_time,
-			"content": json.dumps(content),
-			"info_key": info_key,
-			"info_version": info_version,
-			"mch_id": self.mch_id,
-			"notes": json.dumps(notes),
-			"public_key": public_key,
-			"sign": sign,
-			"sign_type": self.sign_type,
-			"state": state,
-			"version": self.version
+			'address': address,
+			'commit_time': commit_time,
+			'content': json.dumps(content),
+			'info_key': info_key,
+			'info_version': info_version,
+			'mch_id': self.mch_id,
+			'notes': json.dumps(notes),
+			'public_key': public_key,
+			'sign': sign,
+			'sign_type': self.sign_type,
+			'state': state,
+			'version': self.version
 		}
 
 		mch_sign_string = ""
