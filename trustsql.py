@@ -90,6 +90,9 @@ class Trustsql(object):
 		c_prvkey = (c_char*len(prvkey))()
 		c_prvkey.value = prvkey.encode()
 
+		print(c_infokey)
+		print(c_content)
+
 		pSign = (c_char*98)()
 		pInfoKey = c_infokey
 		nInfoVersion = c_uint(int(infoVersion))
