@@ -105,7 +105,7 @@ $(function() {
 		.done(function(data) {
 			console.log("success");
 			console.log(data);
-			$('#issSignResult').text(JSON.stringify(data));
+			$('#issSignResult').text(JSON.stringify(data['content']));
 		})
 		.fail(function() {
 			console.log("error");
