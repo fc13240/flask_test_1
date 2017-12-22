@@ -186,7 +186,10 @@ def issAppend():
         pPubkey = tsql.pubkey;
 
         r = trustsql.iss_append(pInfoKey, nInfoVersion, nState, pContent, pNotes, pCommitTime, pPrvkey, pPubkey)
-        return r;
+        if int(r['retcode']) == 0:
+            return jsonify(r)
+        else:
+            flash(r['retmsg'])
 
 @app.route('/trustsql/issQuery', methods=['GET', 'POST'])
 def issQuery():
